@@ -20,6 +20,7 @@ import Services from './components/services.js';
 import News from './components/news.js';
 import Blog from './components/blog.js';
 import Contacts from './components/contacts.js';
+import Map from './components/map.js';
 import Footer from './components/footer.js';
 
 library.add(fab,fas);
@@ -89,6 +90,7 @@ class Application extends React.Component{
       {(!this.state.preloader)?<News server={this.state.server} config={this.state.config} design={this.state.design} news={this.state.news}/>:null}
       {(!this.state.preloader)?<Blog server={this.state.server} config={this.state.config} design={this.state.design} blog={this.state.blog}/>:null}
       {(!this.state.preloader)?<Contacts server={this.state.server} config={this.state.config} design={this.state.design} contacts={this.state.contacts} socials={this.state.socials}/>:null}
+      {(!this.state.preloader)?<Map/>:null}
       {(!this.state.preloader)?<Footer server={this.state.server} config={this.state.config} design={this.state.design} socials={this.state.socials}/>:null}
     </div>
   }

@@ -89,6 +89,7 @@ class NewsComponent extends React.Component {
       <div className="carouselBlock">
         {(this.state.width > 880)?multipleRowSlidesLayout(this.props.news.news,this.props.server):multipleRowSlidesLayoutMobile(this.props.news.news,this.props.server)}
       </div>
+      <a href={"#"}><div className="openFullNewsBTN">Більше новин</div></a>
     </div>
   }
 }
