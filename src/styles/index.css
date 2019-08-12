@@ -3,6 +3,11 @@
   src: url(./fonts/16857.ttf); /* Путь к файлу со шрифтом */
 }
 
+@font-face {
+  font-family: BickhamScriptOne; /* Имя шрифта */
+  src: url(./fonts/BickhamScriptOne.ttf); /* Путь к файлу со шрифтом */
+}
+
 body{
   margin: 0;
   padding: 0;
@@ -18,7 +23,7 @@ body{
 #root::-webkit-scrollbar-track
 {
   background-color: #ffffff;
-  border-left: 1px solid #08e8de;
+  border-left: 1px solid #c3c3c3;
 }
 
 #root::-webkit-scrollbar{
@@ -29,7 +34,7 @@ body{
 }
 
 #root::-webkit-scrollbar-thumb{
-  background-color: #149690;
+  background-color: #262626;
   border-radius: 0;
   cursor: pointer;
 }
@@ -152,6 +157,32 @@ body{
   background-color: #ffffff;
 }
 
+/** Buttons **/
+.fixedButton{
+  position: fixed;
+}
+
+.fixedButton.toTop{
+  right: 20px;
+  bottom: 10px;
+  width: 50px;
+  height: 50px;
+  background-color: #262626;
+  z-index: 5;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  line-height: 50px;
+}
+
+.fixedButton.toTop:hover{
+  background-color: #000000;
+  color: red;
+}
+
 /** HeadComponent **/
 .background_block{
   position: absolute;
@@ -247,12 +278,276 @@ body{
   font-weight: bold;
   opacity: 0.3;
   z-index: 0;
+  font-family: BickhamScriptOne;
+}
+
+.title_line{
+  width: 120px;
+  height: 2px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 /** AboutComponent **/
+.block.about{
+  height: auto;
+}
+
 .aboutText{
   max-width: 1080px;
   margin: auto;
   text-align: justify;
   font-size: 20px;
+  position: relative;
+}
+
+.socialsBlock{
+  position: absolute;
+  left: 0;
+  bottom: 100px;
+  font-size: 30px;
+  z-index: 1;
+}
+
+.socialsBlock a{
+  margin: 10px 5px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #615651;
+  transition: 0.3s;
+}
+
+.socialsBlock a:hover{
+  color: #11a0ff;
+}
+
+.stamp{
+  position: relative;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: right;
+}
+
+.absoluteImage{
+  position: relative;
+}
+
+#stamp{
+  max-width: 200px;
+  width: 100%;
+  z-index: 1;
+  right: 0;
+  position: absolute;
+}
+
+#signature{
+  right: -100px;
+  z-index: 0;
+  opacity: 0.7;
+}
+
+/** StatisticComponent **/
+.block.statistic{
+  overflow: hidden;
+  height: 320px;
+  position: relative;
+}
+
+.statisticTexture{
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.41);
+  background-image: url("https://www.transparenttextures.com/patterns/txture.png");
+}
+
+.block.statistic .background video{
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.statisticData{
+  width: fit-content;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 1;
+}
+
+.statisticBlockData{
+  display: inline-block;
+  text-align: center;
+  width: 265px;
+  margin: 0 10px;
+  padding: 20px 0;
+  border: 2px solid #f3f3f3;
+}
+
+.statisticImage{
+  width: 80px;
+  text-align: center;
+  margin: auto;
+  font-size: 30px;
+  color: white;
+}
+
+.statisticImage img{
+    max-width: 100%;
+}
+
+.statisticTitle{
+  font-size: 24px;
+  color: white;
+}
+
+.statisticTitle2{
+  font-size: 18px;
+  color: white;
+}
+
+.statisticLength{
+  font-size: 34px;
+  color: white;
+  font-weight: bold;
+}
+
+/** ServicesComponent **/
+.block.services{
+  height: auto;
+}
+
+.servicesBlockData{
+  max-width: 1180px;
+  margin: auto;
+}
+
+.service_block{
+  width: calc(100% / 4 - 20px);
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  display: inline-block;
+  height: 400px;
+  margin: 10px;
+  position: relative;
+}
+
+.setrviceLine{
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+
+.setrviceLine.image{
+
+}
+
+.setrviceLine.image img{
+  height: 183px;
+}
+
+.setrviceLine.title{
+  text-transform: uppercase;
+  margin: 5px 0;
+  font-weight: bold;
+  color: #393939;
+}
+
+.setrviceLine.text{
+  padding: 0 10px;
+  width: calc(100% - 20px);
+}
+
+.setrviceLine.buttons{
+  margin-top: 10px;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+}
+
+.setrviceLine.buttons a{
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/** NewsComponent **/
+.block.news{
+  height: auto;
+}
+
+.newsBlockContent{
+  width: calc(100% / 3 - 20px);
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  display: inline-block;
+  height: 400px;
+  position: relative;
+}
+
+.newsLine{
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+
+.newsLine.image{
+
+}
+
+.newsLine.image img{
+  height: 183px;
+}
+
+.newsLine.title{
+  text-transform: uppercase;
+  margin: 5px 0;
+  font-weight: bold;
+  color: #393939;
+  padding: 0 10px;
+  width: calc(100% - 20px);
+}
+
+.swiper-slide{
+  height: 480px;
+}
+
+.newsLine.text{
+  padding: 0 10px;
+  width: calc(100% - 20px);
+  overflow: hidden;
+  max-height: 210px;
+}
+
+.newsLine.buttons{
+  margin-top: 10px;
+  bottom: 10px;
+  left: 0;
+}
+
+.newsLine.buttons a{
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+
+/** FooterComponent **/
+.block.footer{
+  max-height: 400px;
+  position: relative;
+  z-index: 6;
+}
+
+.hiden{
+  opacity: 0;
+  z-index: -1;
 }

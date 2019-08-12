@@ -8,7 +8,6 @@ class HeadComponent extends React.Component {
       <div className="background_block">
         <div className="background_filter"></div>
         <img src={this.props.server + "/images/" +this.props.head.backgroundImage} alt=""/>
-
       </div>
       <div className="big_logotype">
         <Logotype logotype={this.props.server + "/images/" +this.props.config.logo} logoColor={this.props.config.logoColor}/>

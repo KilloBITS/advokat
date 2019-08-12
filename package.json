@@ -18,7 +18,9 @@
     "path": "^0.12.7",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-id-swiper": "^2.3.2",
     "react-scripts": "3.0.1",
+    "swiper": "^4.5.0",
     "vivus": "^0.4.4"
   },
   "scripts": {

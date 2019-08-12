@@ -15,8 +15,10 @@ import Menu from './components/includes/menu.js';
 
 import Head from './components/head.js';
 import About from './components/about.js';
+import Statistic from './components/statistic.js';
 import Services from './components/services.js';
 import News from './components/news.js';
+import Blog from './components/blog.js';
 import Contacts from './components/contacts.js';
 import Footer from './components/footer.js';
 
@@ -26,6 +28,7 @@ class Application extends React.Component{
   constructor(props){
     super(props);
     this.state = {
+      scrolltop: 0,
       preloader: true,
       menuColor: false,
       server: (window.location.hostname === 'localhost')? (window.location.port === "3000")? window.location.origin.split('3000')[0]+'5004':window.location.origin:window.location.origin,
@@ -43,9 +46,16 @@ class Application extends React.Component{
         this.setState({
           preloader: false,
           config: data.data.data.config,
+          design: data.data.data.design,
           menu: data.data.data.menu,
           head: data.data.data.head,
-          about: data.data.data.about
+          about: data.data.data.about,
+          statistic: data.data.data.statistic,
+          services: data.data.data.services,
+          news: data.data.data.news,
+          blog: data.data.data.blog,
+          contacts: data.data.data.contacts,
+          socials: data.data.data.socials
         });
       }
     });
@@ -56,11 +66,13 @@ class Application extends React.Component{
     let scrolltop = document.getElementById('root').scrollTop;
     if(scrolltop >= 50){
       this.setState({
-        menuColor: true
+        menuColor: true,
+        scrolltop: scrolltop
       });
     }else{
       this.setState({
-        menuColor: false
+        menuColor: false,
+        scrolltop: scrolltop
       });
     }
   }
@@ -68,14 +80,16 @@ class Application extends React.Component{
   render(){
     return <div className="page" id="page">
       {(this.state.preloader)?<Preloader/>:null}
-      {(!this.state.preloader)?<Buttons/>:null}
+      {(!this.state.preloader)?<Buttons scrollTop={this.state.scrolltop}/>:null}
       {(!this.state.preloader)?<Menu config={this.state.config} data={this.state.menu} menuColor={(this.state.menuColor)?"#262626":"rgba(38, 38, 38, 0)"}/>:null}
       {(!this.state.preloader)?<Head server={this.state.server} config={this.state.config} head={this.state.head}/>:null}
-      {(!this.state.preloader)?<About config={this.state.config} about={this.state.about}/>:null}
-      {(!this.state.preloader)?<Services config={this.state.config}/>:null}
-      {(!this.state.preloader)?<News config={this.state.config}/>:null}
-      {(!this.state.preloader)?<Contacts config={this.state.config}/>:null}
-      {(!this.state.preloader)?<Footer config={this.state.config}/>:null}
+      {(!this.state.preloader)?<About server={this.state.server} config={this.state.config} design={this.state.design} about={this.state.about} socials={this.state.socials}/>:null}
+      {(!this.state.preloader)?<Statistic server={this.state.server} config={this.state.config} design={this.state.design} statistic={this.state.statistic} scrollTop={this.state.scrolltop}/>:null}
+      {(!this.state.preloader)?<Services server={this.state.server} config={this.state.config} design={this.state.design} services={this.state.services}/>:null}
+      {(!this.state.preloader)?<News server={this.state.server} config={this.state.config} design={this.state.design} news={this.state.news}/>:null}
+      {(!this.state.preloader)?<Blog server={this.state.server} config={this.state.config} design={this.state.design} blog={this.state.blog}/>:null}
+      {(!this.state.preloader)?<Contacts server={this.state.server} config={this.state.config} design={this.state.design} contacts={this.state.contacts} socials={this.state.socials}/>:null}
+      {(!this.state.preloader)?<Footer server={this.state.server} config={this.state.config} design={this.state.design} socials={this.state.socials}/>:null}
     </div>
   }
 }
