@@ -9,7 +9,14 @@ class ContactsComponent extends React.Component {
       <Title data={this.props.contacts}/>
       <div className="swgBorder"><SVG/></div>
       <div className="contactsContent">
+        <div className="contactsContentBlockData">
+          <div className="blockDataInline">
 
+          </div>
+          <div className="blockDataInline">
+
+          </div>
+        </div>
       </div>
     </div>
   }

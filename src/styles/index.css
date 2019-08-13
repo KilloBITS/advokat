@@ -660,7 +660,7 @@ body{
 .swgBorder{
   position: absolute;
   width: 100%;
-  z-index: 1000;
+  z-index: 5;
   height: calc(100% - 134px);
   transform: rotate(180deg);
 }
@@ -668,6 +668,22 @@ body{
 .swgBorder svg{
   position: absolute;
   bottom: 0;
+}
+
+.contactsContentBlockData{
+  width: 100%;
+  height: 100%;
+  max-width: 1080px;
+  margin: auto;
+  position: relative;
+  z-index: 6;
+}
+
+.blockDataInline{
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  position: relative;
 }
 
 /** MapComponent **/
