@@ -16,7 +16,6 @@ let createNumber = (num, sym, id, speed) => {
 }
 
 let startInterval = (num, sym, id, speed, top) => {
-  console.log(top)
   if(parseInt(top) > 1000 && (startNum[id] === 0 || startNum[id] === undefined) ){
     createNumber(num, sym, id, speed)
   }

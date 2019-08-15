@@ -22,6 +22,7 @@ let getdata = (req, res, next) => {
     const blog = db.collection("blog");
     const contacts = db.collection("contacts");
     const socials = db.collection("socials");
+    const divorce = db.collection("divorce");
 
     if (err) return console.log(err);
 
@@ -36,21 +37,24 @@ let getdata = (req, res, next) => {
                     blog.find({AI: 0}).toArray(function(err, results_blog) {
                       contacts.find({AI: 0}).toArray(function(err, results_contacts) {
                         socials.find({AI: 0}).toArray(function(err, results_socials) {
-                          let GlobalData = {
-                            config: results_config[0],
-                            design: results_design[0],
-                            menu: results_menu,
-                            head: results_head[0],
-                            about: results_about[0],
-                            statistic: results_statistic[0],
-                            news: results_news[0],
-                            services: results_services[0],
-                            blog: results_blog[0],
-                            contacts: results_contacts[0],
-                            socials: results_socials[0]
-                          };
-                          GlobalData.isAdmin = (req.session.user_id !== undefined)?true:true;
-                          res.send({code: 200, data: GlobalData});
+                          divorce.find({AI: 0}).toArray(function(err, results_divorce) {
+                            let GlobalData = {
+                              config: results_config[0],
+                              design: results_design[0],
+                              menu: results_menu,
+                              head: results_head[0],
+                              about: results_about[0],
+                              statistic: results_statistic[0],
+                              news: results_news[0],
+                              services: results_services[0],
+                              blog: results_blog[0],
+                              contacts: results_contacts[0],
+                              socials: results_socials[0],
+                              divorce: results_divorce[0]
+                            };
+                            GlobalData.isAdmin = (req.session.user_id !== undefined)?true:true;
+                            res.send({code: 200, data: GlobalData});
+                          });
                         });
                       });
                     });

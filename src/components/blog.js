@@ -1,5 +1,6 @@
 import React from 'react';
 import Title from './includes/title';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 let parseTags = (tags) => {
@@ -10,6 +11,7 @@ let parseTags = (tags) => {
 }
 
 let parseBlog = (data, location) => {
+  data.reverse();
   const dataBlock = data.map((comp, key) => <div key={key} className="blogBlockContent">
     <div className="blogLine image">
       <img src={location + '/images/blog/' + comp.image} alt=""/>
@@ -34,6 +36,9 @@ class BlogComponent extends React.Component {
       <div className="blogBlockContentData">
         {(this.props.blog.blog !== undefined && this.props.blog.blog.length > 0)?parseBlog(this.props.blog.blog, this.props.server): null}
       </div>
+      <Link to={"/blog"}>
+        <div className="openFullNewsBTN">Читати блог</div>
+      </Link>
     </div>
   }
 }

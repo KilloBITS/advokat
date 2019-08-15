@@ -1,6 +1,7 @@
 import React from 'react';
 import Title from './includes/title';
 import Swiper from 'react-id-swiper';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../styles/swiper.css';
 
@@ -89,7 +90,9 @@ class NewsComponent extends React.Component {
       <div className="carouselBlock">
         {(this.state.width > 880)?multipleRowSlidesLayout(this.props.news.news,this.props.server):multipleRowSlidesLayoutMobile(this.props.news.news,this.props.server)}
       </div>
-      <a href={"#"}><div className="openFullNewsBTN">Більше новин</div></a>
+      <Link to={"/news"}>
+        <div className="openFullNewsBTN">Більше новин</div>
+      </Link>
     </div>
   }
 }

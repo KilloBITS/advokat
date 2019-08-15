@@ -41,6 +41,9 @@ app.use(express.static(path.join(__dirname, './data/')));
 const getData =  require('./controllers/global/data');
 app.post('/getData', getData);
 
+const message =  require('./controllers/global/message');
+app.post('/send-message', message);
+
 app.get('/*', function (req, res) {
   // if(fs.existsSync(path.join(__dirname, '../build', 'index.html'))){
     res.sendFile(path.join(__dirname, '../build', 'index.html'));

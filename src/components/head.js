@@ -10,7 +10,7 @@ class HeadComponent extends React.Component {
         <img src={this.props.server + "/images/" +this.props.head.backgroundImage} alt=""/>
       </div>
       <div className="big_logotype">
-        <Logotype logotype={this.props.server + "/images/" +this.props.config.logo} logoColor={this.props.config.logoColor}/>
+        <Logotype domId="Logotype" logotype={this.props.server + "/images/" +this.props.config.logo} logoColor={this.props.config.logoColor}/>
       </div>
       <div id="scroll-d"><FontAwesomeIcon icon={['fas', 'arrow-down']} /></div>
     </div>

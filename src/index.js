@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 import axios from 'axios';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -22,10 +24,19 @@ import Blog from './components/blog.js';
 import Contacts from './components/contacts.js';
 import Map from './components/map.js';
 import Footer from './components/footer.js';
+import Author from './components/author.js';
+
+//PAGES
+import ServiceContent from './components/pages/services.js';
+import NewsContent from './components/pages/news.js';
+import BlogContent from './components/pages/blog.js';
+import DivorceContent from './components/pages/divorce.js';
+import ContactsContent from './components/pages/contacts.js';
 
 library.add(fab,fas);
 
-class Application extends React.Component{
+class MainContent extends React.Component{
+  _isMounted = false;
   constructor(props){
     super(props);
     this.state = {
@@ -38,31 +49,37 @@ class Application extends React.Component{
     this.handleScroll = this.handleScroll.bind(this);
   }
   componentDidMount(){
+    console.clear();
+    this._isMounted = true;
     console.log('%c Стоп! ', 'font-family: sans-serif; color: #149690; font-size: 40px; text-transform: uppercase; text-align: center');
     console.log('%c Эта функция браузера предназначена для разработчиков! ', 'font-family: sans-serif; color: #149690; font-size: 24px; text-transform: uppercase; text-align: center');
     console.log('%c Служба поддержки сайта: kaleniuk.developer@gmail.com ', 'font-family: sans-serif; color: #149690; font-size: 16px; text-transform: uppercase; text-align: center');
     axios.post(this.state.server+'/getData').then(data => {
-      console.log(data);
-      if(data.data.code === 200){
-        this.setState({
-          preloader: false,
-          config: data.data.data.config,
-          design: data.data.data.design,
-          menu: data.data.data.menu,
-          head: data.data.data.head,
-          about: data.data.data.about,
-          statistic: data.data.data.statistic,
-          services: data.data.data.services,
-          news: data.data.data.news,
-          blog: data.data.data.blog,
-          contacts: data.data.data.contacts,
-          socials: data.data.data.socials
-        });
+      if (this._isMounted) {
+        if(data.data.code === 200){
+          this.setState({
+            config: data.data.data.config,
+            design: data.data.data.design,
+            menu: data.data.data.menu,
+            head: data.data.data.head,
+            about: data.data.data.about,
+            statistic: data.data.data.statistic,
+            services: data.data.data.services,
+            news: data.data.data.news,
+            blog: data.data.data.blog,
+            contacts: data.data.data.contacts,
+            socials: data.data.data.socials
+          });
+          setTimeout(() => {
+            this.setState({
+              preloader: false
+            });
+          }, 1000);
+        }
       }
     });
     document.getElementById('root').addEventListener('scroll', this.handleScroll);
   }
-
   handleScroll(){
     let scrolltop = document.getElementById('root').scrollTop;
     if(scrolltop >= 50){
@@ -77,9 +94,12 @@ class Application extends React.Component{
       });
     }
   }
-
+  componentWillUnmount(){
+    this._isMounted = false;
+    console.log('Деструкция страницы')
+  }
   render(){
-    return <div className="page" id="page">
+    return <div className="staticContent">
       {(this.state.preloader)?<Preloader/>:null}
       {(!this.state.preloader)?<Buttons scrollTop={this.state.scrolltop}/>:null}
       {(!this.state.preloader)?<Menu config={this.state.config} data={this.state.menu} menuColor={(this.state.menuColor)?"#262626":"rgba(38, 38, 38, 0)"}/>:null}
@@ -91,7 +111,23 @@ class Application extends React.Component{
       {(!this.state.preloader)?<Blog server={this.state.server} config={this.state.config} design={this.state.design} blog={this.state.blog}/>:null}
       {(!this.state.preloader)?<Contacts server={this.state.server} config={this.state.config} design={this.state.design} contacts={this.state.contacts} socials={this.state.socials}/>:null}
       {(!this.state.preloader)?<Map/>:null}
-      {(!this.state.preloader)?<Footer server={this.state.server} config={this.state.config} design={this.state.design} socials={this.state.socials}/>:null}
+      {(!this.state.preloader)?<Footer server={this.state.server} config={this.state.config} design={this.state.design} socials={this.state.socials} menu={this.state.menu} contacts={this.state.contacts} socials={this.state.socials}/>:null}
+    </div>
+  }
+}
+
+class Application extends React.Component{
+  render(){
+    return <div className="page" id="page">
+      <Router>
+        <Route path="/" exact component={MainContent}/>
+        <Route path="/service" exact component={ServiceContent}/>
+        <Route path="/blog" exact component={BlogContent}/>
+        <Route path="/divorce" exact component={DivorceContent}/>
+        <Route path="/contacts" exact component={ContactsContent}/>
+        <Route path="/news" exact component={NewsContent}/>
+      </Router>
+      <Author/>
     </div>
   }
 }

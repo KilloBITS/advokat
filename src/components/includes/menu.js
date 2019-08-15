@@ -1,7 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 let parseMenu = (dataMenu) => {
-    const menuBtn = dataMenu.map((btn, key) => <div key={key} className="menu_btn">{btn.title}</div>);
+    const menuBtn = dataMenu.map((btn, key) =>
+        <Link key={key} to={btn.link}>
+          <div className="menu_btn">{btn.title}</div>
+        </Link>
+    );
     return menuBtn
 }
 

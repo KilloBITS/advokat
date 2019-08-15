@@ -16,11 +16,13 @@
     "express-session": "^1.16.2",
     "fs": "0.0.1-security",
     "leaflet": "^1.5.1",
+    "nodemailer": "^6.3.0",
     "path": "^0.12.7",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-id-swiper": "^2.3.2",
     "react-leaflet": "^2.4.0",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "swiper": "^4.5.0",
     "vivus": "^0.4.4"
