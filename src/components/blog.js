@@ -12,7 +12,7 @@ let parseTags = (tags) => {
 
 let parseBlog = (data, location) => {
   data.reverse();
-  const dataBlock = data.map((comp, key) => <div key={key} className="blogBlockContent">
+  const dataBlock = data.map((comp, key) => <div key={key} id={"blog_"+key} className="blogBlockContent">
     <div className="blogLine image">
       <img src={location + '/images/blog/' + comp.image} alt=""/>
     </div>
@@ -21,9 +21,6 @@ let parseBlog = (data, location) => {
     <div className="blogLine date">{comp.date}</div>
     <div className="blogLine tags">
       {parseTags(comp.tags.split(","))}
-    </div>
-    <div className="blogLine buttons">
-      <a href={"#"+comp.AI}>Читати повністю</a>
     </div>
   </div>);
   return dataBlock

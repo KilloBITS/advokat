@@ -2,13 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-
+import Modal from '../includes/modal.js';
 import Title from '../includes/title.js';
 import Menu from '../includes/menu.js';
 import Preloader from '../includes/preloader.js';
 import Footer from '../footer.js';
 
-let parseNews = (data, location) => {
+let parseNews = (data, location, click) => {
   const dataBlock = data.map((comp, key) => <div key={key} className="newsBlockContent">
     <div className="newsLine image">
       <img src={location + '/images/news/' + comp.image} alt=""/>
@@ -16,7 +16,7 @@ let parseNews = (data, location) => {
     <div className="newsLine title">{comp.title}</div>
     <div className="newsLine text">{comp.text}</div>
     <div className="newsLine buttons">
-      <a href={"#"+comp.AI}>Читати повністю</a>
+      <div id={comp.AI} onClick={click.bind(this)}>Детальніше</div>
     </div>
   </div>);
   return dataBlock
@@ -27,13 +27,35 @@ class NewsPage extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      modal: false,
+      dataId: null,
+      contentModal: null,
       scrolltop: 0,
       preloader: true,
       menuColor: false,
       server: (window.location.hostname === 'localhost')? (window.location.port === "3000")? window.location.origin.split('3000')[0]+'5004':window.location.origin:window.location.origin,
     }
+    this.handleClick = this.handleClick.bind(this);
+    this.closeModal = this.closeModal.bind(this)
     this.handleScrollNews = this.handleScrollNews.bind(this);
   }
+
+  handleClick(el){
+    this.setState({
+      modal: true,
+      dataId: el.target.id,
+      contentModal: this.state.news.news[parseInt(el.target.id)]
+    });
+  }
+
+  closeModal(){
+    this.setState({
+      modal: false,
+      dataId: null,
+      contentModal: null
+    })
+  }
+
   componentDidMount(){
     console.clear();
     this._isMounted = true;
@@ -79,7 +101,8 @@ class NewsPage extends React.Component {
       {(!this.state.preloader)?<div className="pageContent">
         <div className="pageNewsContainer">
           <Title data={this.state.news}/>
-          {parseNews(this.state.news.news, this.state.server)}
+          {(this.state.modal)?<Modal open={this.state.modal} name={this.state.contentModal.title} text={this.state.contentModal.text} closeModal={this.closeModal}/>:null}
+          {parseNews(this.state.news.news, this.state.server, this.handleClick)}
           <div className="viewAllButton">Показати більше</div>
         </div>
       </div>:null}

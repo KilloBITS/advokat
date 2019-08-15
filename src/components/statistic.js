@@ -41,7 +41,7 @@ class StatisticComponent extends React.Component {
           <div className="statisticTitle">Років</div>
           <div className="statisticTitle2">Досвіду</div>
           <div className="statisticLength">
-            <Length number={6} speed={30} symbol="+" id="num2" scrollTop={this.props.scrollTop}/>
+            <Length number={6} speed={70} symbol="+" id="num2" scrollTop={this.props.scrollTop}/>
           </div>
         </div>
 

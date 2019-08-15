@@ -15,9 +15,9 @@ let parseTags = (tags) => {
   return dataBlock
 }
 
-let parseBlog = (data, location) => {
+let parseBlog = (data, location, click) => {
   data.reverse();
-  const dataBlock = data.map((comp, key) => <div key={key} className="blogBlockContent">
+  const dataBlock = data.map((comp, key) => <div key={key} id={"blog_"+key} className="blogBlockContent">
     <div className="blogLine image">
       <img src={location + '/images/blog/' + comp.image} alt=""/>
     </div>
@@ -28,7 +28,7 @@ let parseBlog = (data, location) => {
       {parseTags(comp.tags.split(","))}
     </div>
     <div className="blogLine buttons">
-      <a href={"#"+comp.AI}>Читати повністю</a>
+      <div this-id={"blog_"+key} onClick={click.bind(this)}>Детальніше</div>
     </div>
   </div>);
   return dataBlock
@@ -45,7 +45,18 @@ class BlogPage extends React.Component {
       server: (window.location.hostname === 'localhost')? (window.location.port === "3000")? window.location.origin.split('3000')[0]+'5004':window.location.origin:window.location.origin,
     }
     this.handleScrollBlog = this.handleScrollBlog.bind(this);
+    this.openBlogBlock = this.openBlogBlock.bind(this);
   }
+
+  openBlogBlock(el){
+    let documentBlock = document.getElementById(el.target.getAttribute('this-id'));
+    if(documentBlock.className === "blogBlockContent"){
+      documentBlock.className = "blogBlockContent open"
+    }else{
+      documentBlock.className = "blogBlockContent"
+    }
+  }
+
   componentDidMount(){
     console.clear();
     this._isMounted = true;
@@ -91,7 +102,7 @@ class BlogPage extends React.Component {
       {(!this.state.preloader)?<div className="pageContent">
         <div className="pageServiceContainer">
           <Title data={this.state.blog}/>
-          {(this.state.blog.blog !== undefined && this.state.blog.blog.length > 0)?parseBlog(this.state.blog.blog, this.state.server): null}
+          {(this.state.blog.blog !== undefined && this.state.blog.blog.length > 0)?parseBlog(this.state.blog.blog, this.state.server, this.openBlogBlock): null}
           <div className="viewAllButton">Показати більше</div>
         </div>
       </div>:null}

@@ -482,9 +482,10 @@ a{
   left: 0;
 }
 
-.setrviceLine.buttons a{
+.setrviceLine.buttons div{
   text-decoration: none;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 /** NewsComponent **/
@@ -543,9 +544,11 @@ a{
   left: 0;
 }
 
-.newsLine.buttons a{
+.newsLine.buttons div{
   text-decoration: none;
   text-transform: uppercase;
+  cursor: pointer;
+  color: #0000ad;
 }
 
 .openFullNewsBTN{
@@ -590,6 +593,27 @@ a{
   border-bottom: 1px solid #a3a3a3;
 }
 
+.blogBlockContent.open{
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: auto;
+  position: relative;
+  border-bottom: 1px solid #a3a3a3;
+  max-height: fit-content;
+}
+
+.blogBlockContent.open .blogLine.text {
+  padding: 0 10px;
+  width: calc(100% - 318px);
+  float: right;
+  overflow: hidden;
+  max-height: fit-content;
+  margin: auto;
+  float: none;
+  margin-bottom: 50px;
+}
+
 .blogLine{
   display: inline-block;
   text-align: center;
@@ -631,6 +655,8 @@ a{
   bottom: 10px;
   right: 0;
   position: absolute;
+  color: blue;
+  cursor: pointer;
 }
 
 .blogLine.date{
@@ -644,11 +670,6 @@ a{
   bottom: 10px;
   left: 0;
   position: absolute;
-}
-
-.blogLine.buttons a{
-  text-decoration: none;
-  text-transform: uppercase;
 }
 
 .tag{
@@ -906,6 +927,7 @@ a{
   font-size: 18px;
   cursor: pointer;
   margin-bottom: 3px;
+  color: white;
 }
 
 .footerContactsLine{
@@ -978,6 +1000,7 @@ a{
   border-bottom: 1px solid rgba(192, 192, 192, 0.43);
   margin-bottom: 10px;
   padding-bottom: 10px;
+  cursor: default;
 }
 
 .openCloseThisBlock{
@@ -1041,9 +1064,132 @@ a{
 
 .pageDivorceContainer{
   width: 100%;
-  max-width: 1080px;
   margin: auto;
   padding-bottom: 50px;
+  min-height: 520px;
+  padding-top: 50px;
+}
+
+.pageDivorceContainer.dark{
+  background-color: #f3f3f3;
+}
+
+.contentBlockDivorce{
+  max-width: 1080px;
+  margin: auto;
+}
+
+.divorceIneInfo{
+  font-size: 30px;
+  text-align: center;
+  width: 100%;
+  font-style: italic;
+}
+
+.allDivorceBlock{
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.miniDivorceContainer{
+  width: calc(100% / 3);
+  display: inline-block;
+  text-align: center;
+  height: 150px;
+  float: left;
+}
+
+.miniDivorceContainer .divContLogo{
+  text-align: center;
+}
+
+.miniDivorceContainer .divContLogo img{
+  max-width: 100px;
+  max-height: 90px;
+}
+
+.miniDivorceContainer .divContText{
+    font-size: 20px;
+}
+
+.allDivorceBlockInline{
+  display: inline-grid;
+  width: calc(50% - 20px);
+  padding: 10px;
+}
+
+.allDivorceLine{
+  display: inline-block;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.blockInlineTitle{
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  background-color: #cff09e;
+  color: #656d78;
+  padding: 5px 150px;
+  white-space: nowrap;
+  border-radius: 150px;
+}
+
+.green svg{
+  color: #81cc81;
+}
+
+.blue svg{
+  color: #989ce0;
+}
+
+.bigRedButton{
+  width: 100%;
+  background-color: #d95c4f;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-radius: 150px;
+  transition: 0.3s;
+}
+
+.bigRedButton:hover{
+  background-color: #d04333;
+}
+
+.mTop30{
+  margin-top: 30px;
+}
+
+.woodLine{
+  width: 100%;
+  display: inline-block;
+}
+
+.WL50{
+  width: calc(50% - 10px);
+  display: inline-block;
+  font-size: 26px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  float: left;
+}
+
+.WL50.WL_Left{
+  text-align: right;
+  padding-right: 10px;
+}
+
+.WL50.WL_Right{
+  text-align: left;
+  padding-left: 10px;
 }
 
 /** Page contacts **/
@@ -1115,4 +1261,58 @@ a{
 .authorContent svg{
   margin: 0px 10px;
   color: rgb(201, 169, 0);
+}
+
+
+/** modal **/
+.modalBackground{
+  position: fixed;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5803921568627451);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.modalContent{
+  position: absolute;
+  max-width: 800px;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 700px;
+  padding: 20px;
+  border-radius: 3px;
+  height: 100%;
+}
+
+.closeModal{
+  position: absolute;
+  right: 10px;
+  top: -25px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.modalTitle{
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid silver;
+}
+
+.modalBody{
+  overflow-y: auto;
+  height: calc(100% - 55px);
+  border-bottom: 1px solid silver;
+}
+
+.modalFooter{
+
 }
