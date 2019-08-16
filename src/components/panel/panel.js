@@ -45,7 +45,7 @@ class Panel extends React.Component {
         {(this.state.clickTab === 6)?<Blog/>:null}
       </div>
 
-      <div className="closePanel">Закрити панель адміністратора</div>
+      <div className="closePanel" onClick={this.props.panelOpened}>Закрити панель адміністратора</div>
     </div>
   }
 }

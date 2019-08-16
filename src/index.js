@@ -44,7 +44,9 @@ class MainContent extends React.Component{
     super(props);
     this.state = {
       width: document.body.offsetWidth,
+      isAdmin: false,
       openedMenu: false,
+      openedPanel: false,
       scrolltop: 0,
       preloader: true,
       menuColor: false,
@@ -109,11 +111,15 @@ class MainContent extends React.Component{
       openedMenu: (this.state.openedMenu)?false:true
     });
   }
-
+  openClosePanel(){
+    this.setState({
+      openedPanel: (this.state.openedPanel)?false:true
+    });
+  }
   render(){
     return <div className="staticContent">
       {(this.state.preloader)?<Preloader/>:null}
-      {(!this.state.preloader && this.state.isAdmin)?<Panel/>:null}
+      {(this.state.isAdmin && this.state.openedPanel)?<Panel panelOpened={this.openClosePanel.bind(this)}/>:null}
       {(!this.state.preloader)?<Buttons scrollTop={this.state.scrolltop} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>:null}
       {(!this.state.preloader)?<Menu config={this.state.config} data={this.state.menu} menuColor={(this.state.width > 800)?(this.state.menuColor)?"#262626":"rgba(38, 38, 38, 0)":"white"} open={this.state.openedMenu}/>:null}
       {(!this.state.preloader)?<Head server={this.state.server} config={this.state.config} head={this.state.head}/>:null}
@@ -124,7 +130,7 @@ class MainContent extends React.Component{
       {(!this.state.preloader)?<Blog server={this.state.server} config={this.state.config} design={this.state.design} blog={this.state.blog}/>:null}
       {(!this.state.preloader)?<Contacts server={this.state.server} config={this.state.config} design={this.state.design} contacts={this.state.contacts} socials={this.state.socials}/>:null}
       {(!this.state.preloader)?<Map/>:null}
-      {(!this.state.preloader)?<Footer server={this.state.server} config={this.state.config} design={this.state.design} socials={this.state.socials} menu={this.state.menu} contacts={this.state.contacts} socials={this.state.socials}/>:null}
+      {(!this.state.preloader)?<Footer server={this.state.server} config={this.state.config} design={this.state.design} socials={this.state.socials} menu={this.state.menu} contacts={this.state.contacts} socials={this.state.socials} panelOpened={this.openClosePanel.bind(this)}/>:null}
     </div>
   }
 }

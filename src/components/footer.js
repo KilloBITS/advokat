@@ -23,7 +23,7 @@ class FooterComponent extends React.Component {
       <div className="footerCenterBlock">
         <div className="footerContent left">
           {parseNavigation(this.props.menu)}
-          <div className="menu_btn">Працівникам</div>
+          <div className="menu_btn" onClick={this.props.panelOpened}>Працівникам</div>
         </div>
         <div className="footerContent center">
           <div className="footer_logotype">
