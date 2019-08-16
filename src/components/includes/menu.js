@@ -11,8 +11,14 @@ let parseMenu = (dataMenu) => {
 }
 
 class MenuIncludes extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      width: document.body.offsetWidth
+    }
+  }
   render() {
-    return <div className="menu" id="Menu" style={{backgroundColor: this.props.menuColor}}>
+    return <div className={(this.state.width > 800)?"menu":(this.props.open)?"menu":"menu hide"} id="Menu" style={{backgroundColor: this.props.menuColor}}>
       <div className="menuBlock">
         {parseMenu(this.props.data)}
       </div>

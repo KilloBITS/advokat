@@ -40,6 +40,8 @@ class MainContent extends React.Component{
   constructor(props){
     super(props);
     this.state = {
+      width: document.body.offsetWidth,
+      openedMenu: false,
       scrolltop: 0,
       preloader: true,
       menuColor: false,
@@ -98,11 +100,18 @@ class MainContent extends React.Component{
     this._isMounted = false;
     console.log('Деструкция страницы')
   }
+  openCloseMenu(){
+    console.log("openclose")
+    this.setState({
+      openedMenu: (this.state.openedMenu)?false:true
+    });
+  }
+
   render(){
     return <div className="staticContent">
       {(this.state.preloader)?<Preloader/>:null}
-      {(!this.state.preloader)?<Buttons scrollTop={this.state.scrolltop}/>:null}
-      {(!this.state.preloader)?<Menu config={this.state.config} data={this.state.menu} menuColor={(this.state.menuColor)?"#262626":"rgba(38, 38, 38, 0)"}/>:null}
+      {(!this.state.preloader)?<Buttons scrollTop={this.state.scrolltop} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>:null}
+      {(!this.state.preloader)?<Menu config={this.state.config} data={this.state.menu} menuColor={(this.state.width > 800)?(this.state.menuColor)?"#262626":"rgba(38, 38, 38, 0)":"white"} open={this.state.openedMenu}/>:null}
       {(!this.state.preloader)?<Head server={this.state.server} config={this.state.config} head={this.state.head}/>:null}
       {(!this.state.preloader)?<About server={this.state.server} config={this.state.config} design={this.state.design} about={this.state.about} socials={this.state.socials}/>:null}
       {(!this.state.preloader)?<Statistic server={this.state.server} config={this.state.config} design={this.state.design} statistic={this.state.statistic} scrollTop={this.state.scrolltop}/>:null}

@@ -7,7 +7,7 @@ import Title from '../includes/title.js';
 import Menu from '../includes/menu.js';
 import Preloader from '../includes/preloader.js';
 import Footer from '../footer.js';
-
+import Buttons from '../includes/buttons.js';
 
 let parseServices = (services, onclick) => {
   return services.services.map((service, key) => <div key={key} className="pageServiceBlock">
@@ -22,6 +22,8 @@ class ServicesPage extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      width: document.body.offsetWidth,
+      openedMenu: false,
       scrolltop: 0,
       menuColor: false,
       preloader: true,
@@ -47,9 +49,15 @@ class ServicesPage extends React.Component {
         }
       }
     });
-
     document.getElementById('root').addEventListener('scroll', this.handleScrollServices);
   }
+
+  openCloseMenu(){
+    this.setState({
+      openedMenu: (this.state.openedMenu)?false:true
+    });
+  }
+
   handleScrollServices(){
     let scrolltop = document.getElementById('root').scrollTop;
     if(scrolltop >= 50){
@@ -79,7 +87,8 @@ class ServicesPage extends React.Component {
   render() {
     return <div className="page services">
       {(this.state.preloader)?<Preloader/>:null}
-      {(!this.state.preloader)?<Menu config={this.state.config} data={this.state.menu} menuColor={(this.state.menuColor)?"#262626":"#262626"}/>:null}
+      {(!this.state.preloader)?<Buttons scrollTop={this.state.scrolltop} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>:null}
+      {(!this.state.preloader)?<Menu config={this.state.config} data={this.state.menu} menuColor={(this.state.width > 800)?(this.state.menuColor)?"#262626":"rgba(38, 38, 38, 0)":"white"} open={this.state.openedMenu}/>:null}
       {(!this.state.preloader)?<div className="pageContent">
         <div className="pageServiceContainer">
           <Title data={this.state.services}/>

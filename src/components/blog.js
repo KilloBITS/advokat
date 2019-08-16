@@ -11,7 +11,6 @@ let parseTags = (tags) => {
 }
 
 let parseBlog = (data, location) => {
-  data.reverse();
   const dataBlock = data.map((comp, key) => <div key={key} id={"blog_"+key} className="blogBlockContent">
     <div className="blogLine image">
       <img src={location + '/images/blog/' + comp.image} alt=""/>

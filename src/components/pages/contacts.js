@@ -7,12 +7,15 @@ import Title from '../includes/title.js';
 import Menu from '../includes/menu.js';
 import Preloader from '../includes/preloader.js';
 import Footer from '../footer.js';
+import Buttons from '../includes/buttons.js';
 
 class ContactsPage extends React.Component {
   _isMounted = false;
   constructor(props){
     super(props);
     this.state = {
+      width: document.body.offsetWidth,
+      openedMenu: false,
       scrolltop: 0,
       preloader: true,
       menuColor: false,
@@ -57,10 +60,17 @@ class ContactsPage extends React.Component {
     this._isMounted = false;
     console.log('Деструкция страницы')
   }
+
+  openCloseMenu(){
+    this.setState({
+      openedMenu: (this.state.openedMenu)?false:true
+    });
+  }
   render() {
     return <div className="page contacts">
       {(this.state.preloader)?<Preloader/>:null}
-      {(!this.state.preloader)?<Menu config={this.state.config} data={this.state.menu} menuColor={(this.state.menuColor)?"#262626":"#262626"}/>:null}
+      {(!this.state.preloader)?<Buttons scrollTop={this.state.scrolltop} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>:null}
+      {(!this.state.preloader)?<Menu config={this.state.config} data={this.state.menu} menuColor={(this.state.width > 800)?(this.state.menuColor)?"#262626":"rgba(38, 38, 38, 0)":"white"} open={this.state.openedMenu}/>:null}
       {(!this.state.preloader)?<div className="pageContent">
         <div className="pageContactsContainer">
           <Title data={this.state.contacts}/>

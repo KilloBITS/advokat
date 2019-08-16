@@ -75,7 +75,7 @@ class ContactsComponent extends React.Component {
             </div>
 
           </div>
-          <div className="blockDataInline">
+          <div className="blockDataInline mobileNotop">
             <div className="messageLine">
               <div className="messageLineTitle">Ім'я</div>
               <input type="text" name="name" value={this.state.name} onChange={this.handleInputChange.bind(this)} className="inputForm"/>

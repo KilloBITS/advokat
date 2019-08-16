@@ -7,6 +7,7 @@ import Title from '../includes/title.js';
 import Menu from '../includes/menu.js';
 import Preloader from '../includes/preloader.js';
 import Footer from '../footer.js';
+import Buttons from '../includes/buttons.js';
 
 let parseTags = (tags) => {
   const dataBlock = tags.map((tag, key) => <div key={key} className="tag">
@@ -16,7 +17,6 @@ let parseTags = (tags) => {
 }
 
 let parseBlog = (data, location, click) => {
-  data.reverse();
   const dataBlock = data.map((comp, key) => <div key={key} id={"blog_"+key} className="blogBlockContent">
     <div className="blogLine image">
       <img src={location + '/images/blog/' + comp.image} alt=""/>
@@ -39,6 +39,8 @@ class BlogPage extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      width: document.body.offsetWidth,
+      openedMenu: false,
       scrolltop: 0,
       preloader: true,
       menuColor: false,
@@ -55,6 +57,13 @@ class BlogPage extends React.Component {
     }else{
       documentBlock.className = "blogBlockContent"
     }
+  }
+
+  openCloseMenu(){
+    console.log("openclose")
+    this.setState({
+      openedMenu: (this.state.openedMenu)?false:true
+    });
   }
 
   componentDidMount(){
@@ -98,12 +107,13 @@ class BlogPage extends React.Component {
   render() {
     return <div className="page blog">
       {(this.state.preloader)?<Preloader/>:null}
-      {(!this.state.preloader)?<Menu config={this.state.config} data={this.state.menu} menuColor={(this.state.menuColor)?"#262626":"#262626"}/>:null}
+      {(!this.state.preloader)?<Buttons scrollTop={this.state.scrolltop} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>:null}
+      {(!this.state.preloader)?<Menu config={this.state.config} data={this.state.menu} menuColor={(this.state.width > 800)?(this.state.menuColor)?"#262626":"rgba(38, 38, 38, 0)":"white"} open={this.state.openedMenu}/>:null}
       {(!this.state.preloader)?<div className="pageContent">
         <div className="pageServiceContainer">
           <Title data={this.state.blog}/>
           {(this.state.blog.blog !== undefined && this.state.blog.blog.length > 0)?parseBlog(this.state.blog.blog, this.state.server, this.openBlogBlock): null}
-          <div className="viewAllButton">Показати більше</div>
+          <div className="viewAllButton" style={{float: "left", marginBottom: "30px"}}>Показати більше</div>
         </div>
       </div>:null}
       {(!this.state.preloader)?<Footer server={this.state.server} config={this.state.config} design={this.state.design} socials={this.state.socials} menu={this.state.menu} contacts={this.state.contacts} socials={this.state.socials}/>:null}
