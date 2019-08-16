@@ -33,6 +33,9 @@ import BlogContent from './components/pages/blog.js';
 import DivorceContent from './components/pages/divorce.js';
 import ContactsContent from './components/pages/contacts.js';
 
+//Panel
+import Panel from './components/panel/panel.js';
+
 library.add(fab,fas);
 
 class MainContent extends React.Component{
@@ -70,7 +73,8 @@ class MainContent extends React.Component{
             news: data.data.data.news,
             blog: data.data.data.blog,
             contacts: data.data.data.contacts,
-            socials: data.data.data.socials
+            socials: data.data.data.socials,
+            isAdmin: data.data.data.isAdmin
           });
           setTimeout(() => {
             this.setState({
@@ -101,7 +105,6 @@ class MainContent extends React.Component{
     console.log('Деструкция страницы')
   }
   openCloseMenu(){
-    console.log("openclose")
     this.setState({
       openedMenu: (this.state.openedMenu)?false:true
     });
@@ -110,6 +113,7 @@ class MainContent extends React.Component{
   render(){
     return <div className="staticContent">
       {(this.state.preloader)?<Preloader/>:null}
+      {(!this.state.preloader && this.state.isAdmin)?<Panel/>:null}
       {(!this.state.preloader)?<Buttons scrollTop={this.state.scrolltop} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>:null}
       {(!this.state.preloader)?<Menu config={this.state.config} data={this.state.menu} menuColor={(this.state.width > 800)?(this.state.menuColor)?"#262626":"rgba(38, 38, 38, 0)":"white"} open={this.state.openedMenu}/>:null}
       {(!this.state.preloader)?<Head server={this.state.server} config={this.state.config} head={this.state.head}/>:null}

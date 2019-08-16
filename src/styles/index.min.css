@@ -360,4 +360,7 @@
   .newsLine.image img{
     width: 100%;
   }
+  .pageContent {
+    padding-top: 0px;
+  }
 }
