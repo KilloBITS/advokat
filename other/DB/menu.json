@@ -1,0 +1,6 @@
+{"_id":{"$oid":"5d4e99732f5fcf275c9a4015"},"title":"Головна","link":"/"}
+{"_id":{"$oid":"5d4e99c6e62e31275c1cb1d8"},"title":"Послуги","link":"/service"}
+{"_id":{"$oid":"5d4e99cfe62e31275c1cb1d9"},"title":"Блог","link":"/blog"}
+{"_id":{"$oid":"5d4e99e6e62e31275c1cb1da"},"title":"Розлучення онлайн","link":"/divorce"}
+{"_id":{"$oid":"5d4e99f9e62e31275c1cb1db"},"title":"Контакти","link":"/contacts"}
+{"_id":{"$oid":"5d5522ebcfa42115488f1614"},"title":"Новини","link":"/news"}
