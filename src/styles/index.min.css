@@ -357,4 +357,7 @@
     float: none;
     margin: auto;
   }
+  .newsLine.image img{
+    width: 100%;
+  }
 }

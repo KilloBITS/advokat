@@ -36,7 +36,7 @@ class NewsPage extends React.Component {
       scrolltop: 0,
       preloader: true,
       menuColor: false,
-      server: (window.location.hostname === 'localhost')? (window.location.port === "3000")? window.location.origin.split('3000')[0]+'5004':window.location.origin:window.location.origin,
+      server: (window.location.hostname === 'localhost')? (window.location.port === "3000")? window.location.origin.split('3000')[0]+'80':window.location.origin:window.location.origin,
     }
     this.handleClick = this.handleClick.bind(this);
     this.closeModal = this.closeModal.bind(this)
