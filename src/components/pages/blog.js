@@ -108,7 +108,7 @@ class BlogPage extends React.Component {
     return <div className="page blog">
       {(this.state.preloader)?<Preloader/>:null}
       {(!this.state.preloader)?<Buttons scrollTop={this.state.scrolltop} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>:null}
-      {(!this.state.preloader)?<Menu config={this.state.config} data={this.state.menu} menuColor={(this.state.width > 800)?(this.state.menuColor)?"#262626":"rgba(38, 38, 38, 0)":"white"} open={this.state.openedMenu}/>:null}
+      {(!this.state.preloader)?<Menu config={this.state.config} data={this.state.menu} menuColor={(this.state.width > 800)?(this.state.menuColor)?"#262626":"#262626":"white"} open={this.state.openedMenu}/>:null}
       {(!this.state.preloader)?<div className="pageContent">
         <div className="pageServiceContainer">
           <Title data={this.state.blog}/>

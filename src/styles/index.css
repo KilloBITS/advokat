@@ -966,7 +966,7 @@ a{
 /************** PAGES **************/
 .pageContent{
   width: 100%;
-  /* padding-top: 55px; */
+  padding-top: 55px;
 }
 
 /** Page services **/
@@ -1202,8 +1202,22 @@ a{
   width: 100%;
   max-width: 1080px;
   margin: auto;
-  padding-bottom: 50px;
 }
+
+
+.blockDataInlinePage{
+  display: inline-block;
+  width: calc(50% - 20px);
+  height: auto;
+  position: relative;
+  float: left;
+  margin: auto;
+}
+
+.blockDataInlinePage .contactsLine a{
+  color: black;
+}
+
 
 /** Globals **/
 .viewAllButton{

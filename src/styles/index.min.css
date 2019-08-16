@@ -112,7 +112,11 @@
 
   .block.blog {
     height: auto;
-    display: none;
+    /* display: none; */
+  }
+  .blogBlockContentData {
+    max-width: calc(100% - 20px);
+    margin: auto;
   }
   .block.contacts {
       height: auto;
@@ -210,22 +214,21 @@
   }
 
   .blogLine.title {
-    text-transform: uppercase;
-    margin: 5px 0;
-    font-weight: bold;
-    color: #393939;
-    padding: 0 10px;
-    width: 100%;
+    padding: 0;
     float: left;
+    width: 100%;
   }
 
   .blogLine.text {
-    padding: 0 10px;
+    padding: 0px;
     width: 100%;
     max-height: 210px;
     float: left;
-    overflow: hidden;
     max-height: 135px;
+  }
+
+  .tag{
+    margin: 0 5px 10px 0px;
   }
 
   .blogLine.date {
@@ -314,6 +317,44 @@
   .blockInlineTitle {
     padding: 5px 30px;
   }
+  .fixedButton.toTop{
+    z-index: 1001;
+  }
+
+  .setrviceLine.image img{
+    height: auto;
+    width: 100%;
+  }
+
+  .bigRedButton {
+    width: calc(100% - 20px);
+    margin: auto;
+  }
+
+  .WL50 {
+    font-size: 16px;
+  }
+
+  .WL50 img{
+    width: 100px;
+  }
+
+  .pageDivorceContainer{
+    padding-top: 16px;
+  }
+
+  .pageContactsContainer{
+    width: 100%;
+    max-width: 1080px;
+    margin: auto;
+  }
 
 
+  .blockDataInlinePage{
+    width: calc(100% - 20px);
+    height: auto;
+    position: relative;
+    float: none;
+    margin: auto;
+  }
 }
