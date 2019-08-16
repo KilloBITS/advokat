@@ -52,6 +52,6 @@ app.get('/*', function (req, res) {
   // }
 });
 
-app.listen(5004, function(){
-  console.warn('Server started from port 5004');
+app.listen(80, function(){
+  console.warn('Server started from port 80');
 });
