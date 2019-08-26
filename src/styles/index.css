@@ -28,21 +28,40 @@ a{
   height: 100%;
 }
 
+.gold_button{
+  text-transform: uppercase;
+  color: #a98535;
+  text-align: center;
+  font-size: 30px;
+  padding: 10px 20px;
+  border-radius: 3px;
+  border: 3px solid #a98535;
+  background-color: rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+  margin-top: 30px;
+  transition: 0.3s;
+}
+
+.gold_button:hover{
+  background-color: #a98535;
+  color: black;
+}
+
 /** Scroll bars **/
-#root::-webkit-scrollbar-track
+#page::-webkit-scrollbar-track
 {
   background-color: #ffffff;
   border-left: 1px solid #c3c3c3;
 }
 
-#root::-webkit-scrollbar{
+#page::-webkit-scrollbar{
   width: 6px;
   background-color: #000000;
   border-radius: 10px;
   cursor: pointer;
 }
 
-#root::-webkit-scrollbar-thumb{
+#page::-webkit-scrollbar-thumb{
   background-color: #262626;
   border-radius: 0;
   cursor: pointer;
@@ -55,8 +74,7 @@ a{
   position: absolute;
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 /** Preloader **/
@@ -71,9 +89,10 @@ a{
   transition: 0.3s;
 }
 
-.Preloader.fadeout{
+.preloader.fadeout{
   transform: scale(5);
   opacity: 0;
+  z-index: -1;
 }
 
 .preloader .LoaderBalls {
@@ -126,6 +145,36 @@ a{
   transition: 0.2s;
 }
 
+.sessionBlock{
+
+}
+
+.authBlock{
+  position: absolute;
+  top: 50%;
+  transform: translate(0,-50%);
+}
+
+.rightMenuBlock{
+  right: 10px;
+}
+
+.userBlock{
+
+}
+
+.otherMenuBtn{
+  display: inline-block;
+  margin: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.otherMenuBtn:hover{
+  color: #ffb000;
+}
+
 .menuBlock{
   margin: auto;
   width: fit-content;
@@ -138,7 +187,7 @@ a{
   cursor: pointer;
   transition: 0.3s;
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 24px;
   color: white;
   transition: 0.3s;
 }
@@ -155,6 +204,8 @@ a{
   display: inline-block;
   float: left;
   background-color: #ffffff;
+  min-height: 100%;
+  overflow: auto;
 }
 
 .block{
@@ -222,11 +273,10 @@ a{
 
 .big_logotype{
   position: absolute;
-  width: 600px;
+  width: 700px;
   z-index: 5;
   left: 50%;
   top: 50%;
-  height: 400px;
   transform: translate(-50%, -50%);
 }
 
@@ -476,21 +526,60 @@ a{
 }
 
 .setrviceLine.buttons{
-  margin-top: 10px;
   position: absolute;
-  bottom: 10px;
+  bottom: 0;
   left: 0;
+  border-top: 1px solid #ebebeb;
+  opacity: 0;
+  transition: .3s;
+  height: 30px;
+  background-color: #80fbd1;
+}
+
+.service_block:hover .setrviceLine.buttons{
+  opacity: 1;
 }
 
 .setrviceLine.buttons div{
   text-decoration: none;
   text-transform: uppercase;
   cursor: pointer;
+  padding-top: 3px;
 }
 
 /** NewsComponent **/
 .block.news{
   height: auto;
+  padding-bottom: 30px;
+}
+
+.page.news .isPage{
+  display: block;
+}
+
+.fullNews{
+  max-width: 1080px;
+  margin: auto;
+}
+
+.miniTitle{
+  max-width: 1080px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 25px;
+  margin: 25px auto;
+}
+
+.fullNews .newsBlockContent{
+  width: calc(100% / 3 - 20px);
+  margin: 10px;
+  height: 480px;
+}
+
+.fullNews .newsBlockContent .newsLine.text{
+  max-height: 210px;
+  height: 100%;
+  display: block;
 }
 
 .newsBlockContent{
@@ -542,6 +631,7 @@ a{
   margin-top: 10px;
   bottom: 10px;
   left: 0;
+  position: absolute;
 }
 
 .newsLine.buttons div{
@@ -554,8 +644,6 @@ a{
 .openFullNewsBTN{
   width: 100%;
   height: 40px;
-  text-align: center;
-  margin-top: 20px;
   background-color: #ebebeb;
   line-height: 40px;
   text-transform: uppercase;
@@ -567,7 +655,9 @@ a{
   margin: auto;
   color: black;
   text-decoration: none;
-  margin-top: 30px;
+  margin-top: 60px;
+  display: table;
+  text-align: center;
 }
 
 .openFullNewsBTN:hover{
@@ -684,7 +774,7 @@ a{
 
 /** ContactsComponent **/
 .block.contacts{
-
+  height: fit-content;
 }
 
 .contactsContent{
@@ -700,6 +790,7 @@ a{
   z-index: 5;
   height: calc(100% - 134px);
   transform: rotate(180deg);
+  margin-top: -1px;
 }
 
 .swgBorder svg{
@@ -714,15 +805,15 @@ a{
   margin: auto;
   position: relative;
   z-index: 6;
+  padding-bottom: 50px;
 }
 
 .blockDataInline{
-  display: inline-block;
   width: 50%;
   height: 300px;
   position: relative;
-  float: left;
   margin-top: 200px;
+  display: inline-table;
 }
 
 .messageLine,.contactsLine{
@@ -1056,18 +1147,40 @@ a{
   padding-bottom: 50px;
 }
 
+/** Page return **/
+.page.return{
+  background-color: white;
+  height: auto;
+}
+
+.page.return .pageContent{
+  float: left;
+}
+
+.pageReturnContainer{
+  width: 100%;
+  margin: auto;
+  padding-bottom: 50px;
+  height: fit-content;
+  float: left;
+}
+
 /** Page divorce **/
 .page.divorce{
   background-color: white;
   height: auto;
 }
 
+.page.divorce .pageContent{
+  float: left;
+}
+
 .pageDivorceContainer{
   width: 100%;
   margin: auto;
   padding-bottom: 50px;
-  min-height: 520px;
-  padding-top: 50px;
+  height: fit-content;
+  float: left;
 }
 
 .pageDivorceContainer.dark{
@@ -1084,6 +1197,8 @@ a{
   text-align: center;
   width: 100%;
   font-style: italic;
+  padding-top: 20px;
+  color: #57565c;
 }
 
 .allDivorceBlock{
@@ -1200,7 +1315,7 @@ a{
 
 .pageContactsContainer{
   width: 100%;
-  max-width: 1080px;
+  /* max-width: 1080px; */
   margin: auto;
 }
 
@@ -1236,6 +1351,20 @@ a{
 
 .viewAllButton:hover{
   background-color: #d9d9d9;
+}
+
+.bdt-heading-style {
+  height: 16px;
+  width: 170px;
+  margin: auto;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  background-position: center;
+}
+
+.title_block .bdt-heading-style {
+  height: 50px;
+  margin-top: 0;
 }
 
 .hiden{
@@ -1277,7 +1406,6 @@ a{
   color: rgb(201, 169, 0);
 }
 
-
 /** modal **/
 .modalBackground{
   position: fixed;
@@ -1289,26 +1417,38 @@ a{
   left: 0;
 }
 
-.modalContent{
+.modalContent {
   position: absolute;
-  max-width: 800px;
+  max-width: 650px;
+  max-height: calc(100% - 200px);
   background-color: white;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-height: 700px;
   padding: 20px;
   border-radius: 3px;
   /* height: 100%; */
+  width: 100%;
 }
 
 .closeModal{
   position: absolute;
-  right: 10px;
-  top: -25px;
+  right: -18px;
+  top: -18px;
   color: white;
-  font-size: 18px;
   cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background-color: #ca4747;
+  text-align: center;
+  line-height: 36px;
+  font-size: 26px;
+  border-radius: 150px;
+  transition: 0.3s;
+}
+
+.closeModal:hover{
+  background-color: #be3838;
 }
 
 .modalTitle{
@@ -1325,8 +1465,33 @@ a{
   overflow-y: auto;
   height: calc(100% - 55px);
   border-bottom: 1px solid silver;
+  padding: 5px 0 15px 0;
+  font-size: 18px;
+}
+
+.modalBody::-webkit-scrollbar-track
+{
+  background-color: #ffffff;
+  border-left: 1px solid #c3c3c3;
+}
+
+.modalBody::-webkit-scrollbar{
+  width: 6px;
+  background-color: #000000;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.modalBody::-webkit-scrollbar-thumb{
+  background-color: #262626;
+  border-radius: 0;
+  cursor: pointer;
 }
 
 .modalFooter{
 
+}
+
+.isPage{
+  display: none;
 }

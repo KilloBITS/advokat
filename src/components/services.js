@@ -1,6 +1,6 @@
 import React from 'react';
-import Title from './includes/title';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Title from './includes/title';
 import Modal from './includes/modal.js';
 
 let parseService = (services, server, click) => {

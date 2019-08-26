@@ -10,9 +10,8 @@ class ButtonsIncludes extends React.Component {
   }
 
   toTop(){
-    document.getElementById('root').scrollTo({top: 0, behavior: 'smooth'});
+    document.getElementById('page').scrollTo({top: 0, behavior: 'smooth'});
   }
-
   render() {
     return <div className="buttons" id="Buttons">
       {(this.state.width < 800)?<div className={(this.props.open)?"openMenuButton open":"openMenuButton"} onClick={this.props.openclose}>
@@ -20,7 +19,7 @@ class ButtonsIncludes extends React.Component {
         <div className="menuButtonLine line2"></div>
         <div className="menuButtonLine line3"></div>
       </div>:null}
-      <div className={(this.props.scrollTop > 1000)?"fixedButton toTop":"fixedButton toTop hiden"} onClick={this.toTop.bind(this)}>
+      <div className={(this.props.topPosition > 1000)?"fixedButton toTop":"fixedButton toTop hiden"} onClick={this.toTop.bind(this)}>
         <FontAwesomeIcon icon={['fas', 'arrow-up']} />
       </div>
     </div>

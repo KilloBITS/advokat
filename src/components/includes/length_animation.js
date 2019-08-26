@@ -4,14 +4,16 @@ let createNumber = (num, sym, id, speed) => {
   if(startNum[id] !== parseInt(num) && ( startNum[id] <= 0 || startNum[id] === undefined )){
     startNum[id] = 0;
     let interval = setInterval(()=>{
-        if(startNum[id] < parseInt(num)){
-          startNum[id] = startNum[id]+1
+      if(startNum[id] < parseInt(num)){
+        startNum[id] = startNum[id]+1;
+        if(document.getElementById(id)){
           document.getElementById(id).innerHTML = startNum[id] + sym;
-        }else{
-          clearInterval(interval);
-          return 0
         }
-      }, parseInt(speed));
+      }else{
+        clearInterval(interval);
+        return 0
+      }
+    }, parseInt(speed));
   }
 }
 

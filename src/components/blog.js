@@ -1,6 +1,5 @@
 import React from 'react';
 import Title from './includes/title';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 let parseTags = (tags) => {
@@ -32,9 +31,6 @@ class BlogComponent extends React.Component {
       <div className="blogBlockContentData">
         {(this.props.blog.blog !== undefined && this.props.blog.blog.length > 0)?parseBlog(this.props.blog.blog, this.props.server): null}
       </div>
-      <Link to={"/blog"}>
-        <div className="openFullNewsBTN">Читати блог</div>
-      </Link>
     </div>
   }
 }

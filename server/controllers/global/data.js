@@ -13,6 +13,7 @@ let getdata = (req, res, next) => {
     const db = client.db("LAWYER");
     const config = db.collection("config");
     const design = db.collection("design");
+    const users = db.collection("users");
     const menu = db.collection("menu");
     const head = db.collection("head");
     const about = db.collection("about");
@@ -26,6 +27,7 @@ let getdata = (req, res, next) => {
 
     if (err) return console.log(err);
 
+    console.log('getted data')
     config.find({AI: 0}).toArray(function(err, results_config) {
       design.find({AI: 0}).toArray(function(err, results_design) {
         menu.find().toArray(function(err, results_menu) {
@@ -38,22 +40,25 @@ let getdata = (req, res, next) => {
                       contacts.find({AI: 0}).toArray(function(err, results_contacts) {
                         socials.find({AI: 0}).toArray(function(err, results_socials) {
                           divorce.find({AI: 0}).toArray(function(err, results_divorce) {
-                            let GlobalData = {
-                              config: results_config[0],
-                              design: results_design[0],
-                              menu: results_menu,
-                              head: results_head[0],
-                              about: results_about[0],
-                              statistic: results_statistic[0],
-                              news: results_news[0],
-                              services: results_services[0],
-                              blog: results_blog[0],
-                              contacts: results_contacts[0],
-                              socials: results_socials[0],
-                              divorce: results_divorce[0]
-                            };
-                            GlobalData.isAdmin = (req.session.user_id !== undefined)?true:true;
-                            res.send({code: 200, data: GlobalData});
+                            users.find({AI: 0}).toArray(function(err, results_user) {
+                              let GlobalData = {
+                                config: results_config[0],
+                                design: results_design[0],
+                                menu: results_menu,
+                                head: results_head[0],
+                                about: results_about[0],
+                                statistic: results_statistic[0],
+                                news: results_news[0],
+                                services: results_services[0],
+                                blog: results_blog[0],
+                                contacts: results_contacts[0],
+                                socials: results_socials[0],
+                                divorce: results_divorce[0],
+                                user: (results_user.length > 0)?results_user[0]:null
+                              };
+                              GlobalData.isAdmin = (req.session.user_id !== undefined)?true:false;
+                              res.send({code: 200, data: GlobalData});
+                            });
                           });
                         });
                       });
@@ -69,7 +74,7 @@ let getdata = (req, res, next) => {
   });
 };
 
-router.post('/getData', getdata);
+router.get('/data/all', getdata);
 
 
 module.exports = router;

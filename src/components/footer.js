@@ -1,8 +1,7 @@
 import React from 'react';
-import Logotype from './includes/logotype';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { Link } from 'react-router-dom';
+import Logotype from './includes/logotype';
 
 let parseNavigation = (dataMenu) => {
     const menuBtn = dataMenu.map((btn, key) =>
@@ -22,8 +21,10 @@ class FooterComponent extends React.Component {
     return <div className="block footer" id="Footer" style={{backgroundColor: this.props.design.footerBackgroundColor}}>
       <div className="footerCenterBlock">
         <div className="footerContent left">
-          {parseNavigation(this.props.menu)}
-          <div className="menu_btn" onClick={this.props.panelOpened}>Працівникам</div>
+          <Router>
+            {parseNavigation(this.props.menu)}
+          </Router>
+          <div className="menu_btn">Працівникам</div>
         </div>
         <div className="footerContent center">
           <div className="footer_logotype">

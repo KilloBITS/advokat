@@ -19,7 +19,7 @@ class StatisticComponent extends React.Component {
           <div className="statisticTitle">Завершених</div>
           <div className="statisticTitle2">справ</div>
           <div className="statisticLength">
-            <Length number={76} speed={27} symbol="+" id="num0" scrollTop={this.props.scrollTop}/>
+            <Length number={76} speed={27} symbol="+" id="num0" scrollTop={this.props.top}/>
           </div>
         </div>
 
@@ -30,7 +30,7 @@ class StatisticComponent extends React.Component {
           <div className="statisticTitle">Наших</div>
           <div className="statisticTitle2">клієнтів</div>
           <div className="statisticLength">
-            <Length number={113} speed={20} symbol="+" id="num1" scrollTop={this.props.scrollTop}/>
+            <Length number={113} speed={20} symbol="+" id="num1" scrollTop={this.props.top}/>
           </div>
         </div>
 
@@ -41,7 +41,7 @@ class StatisticComponent extends React.Component {
           <div className="statisticTitle">Років</div>
           <div className="statisticTitle2">Досвіду</div>
           <div className="statisticLength">
-            <Length number={6} speed={70} symbol="+" id="num2" scrollTop={this.props.scrollTop}/>
+            <Length number={6} speed={70} symbol="+" id="num2" scrollTop={this.props.top}/>
           </div>
         </div>
 
@@ -52,7 +52,7 @@ class StatisticComponent extends React.Component {
           <div className="statisticTitle">Позитивних</div>
           <div className="statisticTitle2">відгуки</div>
           <div className="statisticLength">
-            <Length number={102} speed={100} symbol="+" id="num3" scrollTop={this.props.scrollTop}/>
+            <Length number={102} speed={100} symbol="+" id="num3" scrollTop={this.props.top}/>
           </div>
         </div>
 

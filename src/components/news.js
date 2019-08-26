@@ -28,6 +28,10 @@ const multipleRowSlidesLayout = (stafData, location, click) => {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev'
     },
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false
+    },
     pagination: {
       el: '.swiper-pagination',
       clickable: true
@@ -52,6 +56,10 @@ const multipleRowSlidesLayoutMobile = (data, location, click) => {
       depth: 100,
       modifier: 1,
       slideShadows: true
+    },
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false
     },
     navigation: {
       nextEl: '.swiper-button-next',
@@ -111,12 +119,15 @@ class NewsComponent extends React.Component {
     return <div className="block news" id="News" style={{backgroundColor: this.props.design.newsBackgroundColor}}>
       <Title data={this.props.news}/>
       {(this.state.modal)?<Modal open={this.state.modal} name={this.state.contentModal.title} text={this.state.contentModal.text} closeModal={this.closeModal}/>:null}
+      <div className="isPage miniTitle">Останні новини</div>
       <div className="carouselBlock">
-        {(this.state.width > 880)?multipleRowSlidesLayout(this.props.news.news,this.props.server, this.handleClick):multipleRowSlidesLayoutMobile(this.props.news.news,this.props.server, this.handleClick)}
+        {(this.state.width > 880)?multipleRowSlidesLayout(this.props.news.news, this.props.server, this.handleClick):multipleRowSlidesLayoutMobile(this.props.news.news,this.props.server, this.handleClick)}
       </div>
-      <Link to={"/news"}>
-        <div className="openFullNewsBTN">Більше новин</div>
-      </Link>
+      <div className="isPage fullNews">
+        <div className="miniTitle">Всі новини</div>
+        {parseNews(this.props.news.news, this.props.server, this.handleClick)}
+      </div>
+      <div className="isPage openFullNewsBTN">Показати більше</div>
     </div>
   }
 }

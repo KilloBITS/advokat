@@ -23,6 +23,25 @@
     color: white;
     background-color: white;
   }
+
+  .authBlock {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, 0%);
+  }
+
+  .otherMenuBtn {
+    color: black;
+  }
+
+  .rightMenuBlock {
+    left: 50%;
+    bottom: 10px;
+    right: auto;
+    top: auto;
+    width: fit-content;
+  }
+
   .menuBlock {
     width: fit-content;
     position: absolute;
@@ -30,6 +49,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
   }
+
   .menu .menu_btn {
     color: black;
     width: 100%;
@@ -92,6 +112,11 @@
   .big_logotype {
     width: 300px;
     height: auto;
+  }
+
+  .gold_button {
+    font-size: 15px;
+    border: 2px solid #a98535;
   }
 
   .aboutText {
@@ -181,18 +206,34 @@
     max-height: none;
   }
 
-  .modalContent {
-    position: absolute;
-    max-width: calc(100% - 60px);
-    max-height: calc(100% - 200px);
-    background-color: white;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    border-radius: 3px;
+  .swgBorder {
+    height: 180px;
+  }
+
+  .swgBorder svg {
     height: 100%;
-    width: 100%;
+  }
+
+  .modalBackground{
+    z-index: 1002;
+  }
+
+  .modalContent {
+    max-width: calc(100% - 60px);
+    padding: 20px 10px;
+    max-height: calc(100% - 100px);
+    height: 100%;
+  }
+
+  .modalBody {
+    overflow-y: auto;
+    height: calc(100% - 94px);
+    border-bottom: 0px solid silver;
+    padding: 5px 0 15px 0;
+    font-size: 18px;
+    line-height: 16px;
+    text-align: justify;
+    padding-right: 5px;
   }
 
   .pageServiceContainer {
@@ -278,6 +319,11 @@
 
   .title_block{
     font-size: 26px;
+    margin-bottom: 0;
+  }
+
+  .openFullNewsBTN {
+    width: calc(100% - 20px);
   }
 
   .title_line {
@@ -324,6 +370,10 @@
   .setrviceLine.image img{
     height: auto;
     width: 100%;
+  }
+
+  .setrviceLine.buttons{
+    opacity: 1;
   }
 
   .bigRedButton {

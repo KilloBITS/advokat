@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname, '../build')));
 app.use(express.static(path.join(__dirname, './data/')));
 
 const getData =  require('./controllers/global/data');
-app.post('/getData', getData);
+app.get('/data/all', getData);
 
 const message =  require('./controllers/global/message');
 app.post('/send-message', message);
