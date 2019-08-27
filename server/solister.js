@@ -34,7 +34,6 @@ app.use(allowCrossDomain);
 app.use(express.urlencoded({limit: '50mb'}));
 app.use(bParser.urlencoded( {limit: '50mb', extended: true} ));
 app.use(bParser.json({limit: '50mb', extended: true}));
-// app.use(cParser());
 app.use(express.static(path.join(__dirname, '../build')));
 app.use(express.static(path.join(__dirname, './data/')));
 
@@ -43,6 +42,9 @@ app.get('/data/all', getData);
 
 const message =  require('./controllers/global/message');
 app.post('/send-message', message);
+
+const divorce =  require('./controllers/global/divorce');
+app.post('/set/divorce', divorce);
 
 app.get('/*', function (req, res) {
   // if(fs.existsSync(path.join(__dirname, '../build', 'index.html'))){

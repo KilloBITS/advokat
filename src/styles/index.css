@@ -23,6 +23,10 @@ a{
   text-decoration: none;
 }
 
+.pageMainBtn{
+  display: none;
+}
+
 .staticContent{
   width: 100%;
   height: 100%;
@@ -187,7 +191,7 @@ a{
   cursor: pointer;
   transition: 0.3s;
   text-transform: uppercase;
-  font-size: 24px;
+  font-size: 20px;
   color: white;
   transition: 0.3s;
 }
@@ -1307,6 +1311,8 @@ a{
   padding-left: 10px;
 }
 
+
+
 /** Page contacts **/
 .page.contacts{
   background-color: white;
@@ -1366,16 +1372,6 @@ a{
   height: 50px;
   margin-top: 0;
 }
-
-.hiden{
-  opacity: 0;
-  z-index: -1;
-}
-
-.none{
-  display: none;
-}
-
 
 /** AuthorBlock **/
 .block.author{
@@ -1445,6 +1441,7 @@ a{
   font-size: 26px;
   border-radius: 150px;
   transition: 0.3s;
+  z-index: 2;
 }
 
 .closeModal:hover{
@@ -1492,6 +1489,103 @@ a{
 
 }
 
+.modalSubTitle{
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+  font-style: italic;
+  color: silver;
+  font-size: 18px;
+}
+
+.modalLine{
+
+}
+
+.modalLineTitle{
+  text-align: left;
+  padding-left: 14px;
+  padding-bottom: 5px;
+}
+
+.selectors{
+  width: fit-content;
+  margin: 10px auto;
+}
+
+.selectors label{
+  display: inline-block;
+  width: 120px;
+  position: relative;
+}
+
+.selectors .rectRadio{
+  width: 24px;
+  height: 24px;
+  border: 2px solid #598281;
+  display: inline-block;
+  cursor: pointer;
+  background-size: contain;
+  border-radius: 5px;
+}
+
+.rectRadio.activeRadio{
+  background-image: url(./img/check-mark-icon.png);
+}
+
+.selectors .radioText{
+  position: absolute;
+  top: 4px;
+  left: 34px;
+  cursor: pointer;
+}
+
+.modalLine input[type=text]{
+  border: 2px solid #598281;
+  width: calc(100% - 5px);
+  height: 26px;
+  border-radius: 150px;
+  margin-bottom: 10px;
+  text-align: center;
+  outline: none;
+}
+
+.modalLoader{
+  display: none;
+}
+
+.modalLoader.show{
+  background-image: url(./img/EmptyDeliriousBluefish-small.gif);
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: white;
+  position: absolute;
+  left: 0;
+  background-repeat: no-repeat;
+  background-size: 60px;
+  background-position: center;
+  top: 0;
+}
+
+
+
+
+
+
+
+
 .isPage{
+  display: none;
+}
+
+.hiden{
+  opacity: 0;
+  z-index: -1;
+  display: none;
+}
+
+.none{
   display: none;
 }

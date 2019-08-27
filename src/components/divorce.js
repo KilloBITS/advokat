@@ -1,17 +1,28 @@
 import React from 'react';
-import Title from './includes/title.js';
+import Title from './includes/title';
+import Divorce_Modal from './includes/divorce_modal';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 
-
 class Divorce extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      modal: false
+    }
+    this.open_close_modal = this.open_close_modal.bind(this);
+  }
+  open_close_modal(){
+    this.setState({modal: (this.state.modal)?false:true})
+  }
   render() {
     return <div className="page divorce">
+      {(this.state.modal)?<Divorce_Modal server={this.props.server} openClose={this.open_close_modal}/>:null}
       <div className="pageDivorceContainer">
         <Title data={this.props.divorce}/>
         <div className="contentBlockDivorce">
-          <div className="bigRedButton">Залишити заявку</div>
+          <div className="bigRedButton" onClick={this.open_close_modal}>Залишити заявку</div>
           <div className="divorceIneInfo mTop30">
             ВИ ВИРІШИЛИ <b>РОЗІРВАТИ ШЛЮБ</b>, АЛЕ...
           </div>
@@ -81,7 +92,7 @@ class Divorce extends React.Component {
               <div className="allDivorceLine green"><FontAwesomeIcon icon={['fas', 'check']}/> ІНФОРМУЄМО про хід розгляду Вашої справи будь-яким зручним для Вас способом.</div>
             </div>
           </div>
-          <div className="bigRedButton">Залишити заявку</div>
+          <div className="bigRedButton" onClick={this.open_close_modal}>Залишити заявку</div>
         </div>
       </div>
       <div className="pageDivorceContainer">
