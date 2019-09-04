@@ -18,9 +18,12 @@ import Buttons from './components/includes/buttons.js';
 import PreloaderContainer from './containers/preloaderContainer';
 import FooterContainer from './containers/footerContainer';
 import AuthorContainer from './containers/authorContainer';
-//panel page
+//session pages
+import SignInPage from './pages/signin';
+import SignUpPage from './pages/signup';
+//panel pages
 import PanelPage from './pages/main';
-import SignInPage from './pages/main';
+
 
 class Application extends React.Component{
   constructor(props){
@@ -43,6 +46,8 @@ class Application extends React.Component{
   open_close_menu(){
     this.props.setOpenClose( (this.props.menuOpenClose)?false:true )
   }
+
+
   render(){
     return <div className="page" id="page" ref={(el) => this.instance = el}>
       <PreloaderContainer/>
@@ -55,6 +60,8 @@ class Application extends React.Component{
         <Route path="/contacts" exact component={ContactsPage}/>
         <Route path="/news" exact component={NewsPage}/>
         <Route path="/return" exact component={ReturnPage}/>
+        <Route path="/session/signin" exact component={SignInPage}/>
+        <Route path="/session/signup" exact component={SignUpPage}/>
         <Route path="/panel" exact component={(this.props.isAdmin && this.props.user !== null)?PanelPage:SignInPage}/>
       </Router>
       <FooterContainer/>

@@ -16,7 +16,7 @@ const mapStateToProps = state => {
   return {
     preloader: state.global.preloader,
     server: state.global.serverURL,
-    returnData: state.divorce.returnData
+    returnData: state.return.returnData
   };
 }
 

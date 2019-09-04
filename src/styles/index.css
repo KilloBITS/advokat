@@ -173,6 +173,7 @@ a{
   text-transform: uppercase;
   cursor: pointer;
   transition: .2s;
+  color: white;
 }
 
 .otherMenuBtn:hover{
@@ -1371,6 +1372,70 @@ a{
 .title_block .bdt-heading-style {
   height: 50px;
   margin-top: 0;
+}
+
+/** Return block **/
+.returnBlockData{
+  max-width: 1180px;
+  margin: auto;
+}
+
+.miniTextReturn{
+  text-align: center;
+  color: #828282;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.textReturn{
+  padding-top: 20px;
+  font-size: 20px;
+  width: 100%;
+  float: left;
+}
+
+.returnIneInfo{
+  font-size: 30px;
+  text-align: center;
+  width: 100%;
+  font-style: italic;
+  padding-top: 20px;
+  color: #57565c;
+}
+
+.returnSubIneInfo{
+  font-size: 26px;
+  text-align: center;
+  width: 100%;
+  font-style: italic;
+  color: #8f2d2dcc;
+}
+
+.allReturnBlock{
+  width: fit-content;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.miniReturnContainer{
+  width: calc(100% / 2);
+  display: inline-table;
+  text-align: center;
+  height: 150px;
+}
+
+.miniReturnContainer .divContLogo{
+  text-align: center;
+}
+
+.miniReturnContainer .divContLogo img{
+  max-width: 100px;
+  max-height: 90px;
+}
+
+.miniReturnContainer .divContText{
+    font-size: 20px;
 }
 
 /** AuthorBlock **/

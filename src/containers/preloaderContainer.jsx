@@ -14,6 +14,7 @@ import { setNews } from '../store/news/actions';
 import { setServices } from '../store/services/actions';
 import { setStatistic } from '../store/statistic/actions';
 import { setDivorce } from '../store/divorce/actions';
+import { setReturn } from '../store/return/actions';
 
 class PreloaderContainer extends React.Component {
   render() {
@@ -35,7 +36,7 @@ class PreloaderContainer extends React.Component {
       setServices={this.props.setServices}
       setStatistic={this.props.setStatistic}
       setDivorce={this.props.setDivorce}
-
+      setReturn={this.props.setReturn}
     />
   }
 }
@@ -61,6 +62,7 @@ const mapDispatchProps = {
   setServices,
   setStatistic,
   setDivorce,
+  setReturn,
   setAdmin,
   setSession
 }

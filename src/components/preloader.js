@@ -21,6 +21,7 @@ class PreloaderIncludes extends React.Component {
       this.props.setServices(result.data.data.services);
       this.props.setStatistic(result.data.data.statistic);
       this.props.setDivorce(result.data.data.divorce);
+      this.props.setReturn(result.data.data.return);
       this.props.setPreloader(false);
     });
   }

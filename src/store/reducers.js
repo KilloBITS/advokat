@@ -14,6 +14,7 @@ import { services_Reducer } from './services/reducers';
 import { statistic_Reducer } from './statistic/reducers';
 import { author_Reducer } from './author/reducers';
 import { divorce_Reducer } from './divorce/reducers';
+import { return_Reducer } from './return/reducers';
 
 export default combineReducers({
   global: global_Reducer,
@@ -27,5 +28,6 @@ export default combineReducers({
   statistic: statistic_Reducer,
   author: author_Reducer,
   divorce: divorce_Reducer,
-  session: session_Reducer
+  session: session_Reducer,
+  return: return_Reducer
 });
