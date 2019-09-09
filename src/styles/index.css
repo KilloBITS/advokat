@@ -1071,6 +1071,7 @@ a{
 .page.services{
   background-color: white;
   height: auto;
+  padding-bottom: 50px;
 }
 
 .pageServiceContainer{
@@ -1679,7 +1680,13 @@ a{
   cursor: pointer;
 }
 
+.auth_logo{
 
+}
+
+.auth_logo img{
+  
+}
 
 .isPage{
   display: none;

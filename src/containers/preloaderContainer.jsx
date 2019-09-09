@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PreloaderBlock from '../components/preloader'
 
 import { setPreloader, setConfig, setDesign } from '../store/global/actions';
-import { setSession, setAdmin } from '../store/session/actions';
+import { setAdmin } from '../store/session/actions';
 import { setMenu } from '../store/global/menu/actions';
 import { setBlog } from '../store/blog/actions';
 import { setHeadData } from '../store/head/actions';
@@ -25,7 +25,6 @@ class PreloaderContainer extends React.Component {
       setDesign={this.props.setDesign}
       setPreloader={this.props.setPreloader}
       setAdmin={this.props.setAdmin}
-      setSession={this.props.setSession}
       setMenu={this.props.setMenu}
       setHeadData={this.props.setHeadData}
       setAbout={this.props.setAbout}
@@ -63,8 +62,7 @@ const mapDispatchProps = {
   setStatistic,
   setDivorce,
   setReturn,
-  setAdmin,
-  setSession
+  setAdmin
 }
 
 export default connect(mapStateToProps, mapDispatchProps)(PreloaderContainer);

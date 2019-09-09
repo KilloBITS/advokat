@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import MenuContainer from '../containers/menuContainer';
+import Logotype from './includes/logotype';
 
 class SignUpPage extends React.Component {
   constructor(props){
@@ -33,6 +34,9 @@ class SignUpPage extends React.Component {
       <MenuContainer transparent={false}/>
       <div className="pageContent">
         <div className="pageSignInContainer">
+            <div className="auth_logo">
+              {(this.props.config !== null && this.props.config !== undefined)?<Logotype domId="Logotype" logotype={this.props.server + "/images/" +this.props.config.logo} logoColor={this.props.config.logoColor}/>:null}
+            </div>
             <div className="signInLine">
               <input type="text" name="solister_login" className="signInInput" value={this.state.login} onChange={this.changeLogin.bind(this)}/>
             </div>

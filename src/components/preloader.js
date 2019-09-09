@@ -6,9 +6,7 @@ class PreloaderIncludes extends React.Component {
     axios.get(
       this.props.server+'/data/all'
     ).then(result => {
-      console.log(result.data.data)
       this.props.setAdmin(result.data.data.isAdmin);
-      this.props.setSession(result.data.data.user);
       this.props.setConfig(result.data.data.config);
       this.props.setDesign(result.data.data.design);
       this.props.setMenu(result.data.data.menu);

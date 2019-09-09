@@ -9,6 +9,7 @@ class SignInContainer extends React.Component {
       <SignInBlock
         server={this.props.server}
         setAdmin={this.props.setAdmin}
+        config={this.props.config}
       />:null
   }
 }
@@ -16,7 +17,8 @@ class SignInContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     preloader: state.global.preloader,
-    server: state.global.serverURL
+    server: state.global.serverURL,
+    config: state.global.config
   };
 }
 
