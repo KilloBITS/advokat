@@ -27,7 +27,7 @@ class MenuIncludes extends React.Component {
           {parseMenu(this.props.menu, this.menuClick)}
       </div>
       <div className="sessionBlock">
-        {(this.props.session !== null)
+        {(this.props.admin !== null && this.props.admin)
           ?<User_block/>
           :<Auth_block/>
         }

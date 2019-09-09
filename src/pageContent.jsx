@@ -19,11 +19,10 @@ import PreloaderContainer from './containers/preloaderContainer';
 import FooterContainer from './containers/footerContainer';
 import AuthorContainer from './containers/authorContainer';
 //session pages
-import SignInPage from './pages/signin';
+import SignInPage from './containers/signInContainer';
 import SignUpPage from './pages/signup';
 //panel pages
-import PanelPage from './pages/main';
-
+import PanelPage from './pages/panel';
 
 class Application extends React.Component{
   constructor(props){
@@ -61,7 +60,6 @@ class Application extends React.Component{
         <Route path="/news" exact component={NewsPage}/>
         <Route path="/return" exact component={ReturnPage}/>
         <Route path="/session/signin" exact component={SignInPage}/>
-        <Route path="/session/signup" exact component={SignUpPage}/>
         <Route path="/panel" exact component={(this.props.isAdmin && this.props.user !== null)?PanelPage:SignInPage}/>
       </Router>
       <FooterContainer/>
@@ -89,7 +87,7 @@ const mapStateToProps = state => {
     menuOpenClose: state.menu.menuOpen,
     topPosition: state.global.topPosition,
     user: state.global.user,
-    isAdmin: state.global.admin
+    isAdmin: state.session.admin
   };
 }
 

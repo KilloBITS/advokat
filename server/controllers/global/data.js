@@ -59,7 +59,7 @@ let getdata = (req, res, next) => {
                                   return: results_return[0],
                                   user: (results_user.length > 0)?results_user[0]:null
                                 };
-                                GlobalData.isAdmin = (req.session.user_id !== undefined)?true:false;
+                                GlobalData.isAdmin = (req.session.user !== undefined)?true:false;
                                 res.send({code: 200, data: GlobalData});
                               });
                             });
