@@ -1527,6 +1527,7 @@ a{
 
 .modalBody{
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   height: calc(100% - 55px);
   border-bottom: 1px solid silver;
   padding: 5px 0 15px 0;
