@@ -211,6 +211,7 @@ a{
   background-color: #ffffff;
   min-height: 100%;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .block{
