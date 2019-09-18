@@ -10,7 +10,10 @@ class PanelPage extends React.Component {
       <MenuContainer transparent={false}/>
       <div className="pageContent">
         <div className="adminPanel">
-
+          <div className="panel_nav"></div>
+          <div className="panel_content">
+            <div className="pc blog_panel"></div>
+          </div>
         </div>
       </div>
     </div>

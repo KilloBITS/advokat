@@ -45,6 +45,10 @@ app.post('/set/divorce', divorce);
 const signin =  require('./controllers/global/signin');
 app.post('/session/signin', signin);
 
+const blog =  require('./controllers/panel/blogPanel');
+app.post('/blog/remove', blog);
+app.post('/blog/add', blog);
+
 app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });

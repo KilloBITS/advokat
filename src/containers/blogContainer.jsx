@@ -9,6 +9,7 @@ class BlogContainer extends React.Component {
         server={this.props.server}
         design={this.props.design}
         blog={this.props.blogData}
+        admin={this.props.admin}
       />:null
   }
 }
@@ -19,7 +20,8 @@ const mapStateToProps = state => {
     server: state.global.serverURL,
     design: state.global.design,
     parent: state.global.parentComponent,
-    blogData: state.blog.blogData
+    blogData: state.blog.blogData,
+    admin: state.session.admin
   };
 }
 
