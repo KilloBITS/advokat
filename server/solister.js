@@ -55,4 +55,5 @@ app.get('/*', function (req, res) {
 
 app.listen(80, function(){
   console.warn('Server started from port 80');
+  global.blogImageFolder = './data/images/blog/';
 });

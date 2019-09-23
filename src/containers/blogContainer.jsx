@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BlogBlock from '../components/blog'
+import { setBlog } from '../store/blog/actions';
 
 class BlogContainer extends React.Component {
   render() {
@@ -10,6 +11,7 @@ class BlogContainer extends React.Component {
         design={this.props.design}
         blog={this.props.blogData}
         admin={this.props.admin}
+        setBlog={this.props.setBlog}
       />:null
   }
 }
@@ -25,4 +27,8 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps)(BlogContainer);
+const mapDispatchProps = {
+  setBlog
+}
+
+export default connect(mapStateToProps, mapDispatchProps)(BlogContainer);
