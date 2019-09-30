@@ -49,6 +49,12 @@ const blog =  require('./controllers/panel/blogPanel');
 app.post('/blog/remove', blog);
 app.post('/blog/add', blog);
 
+app.get('/signout', function (req, res) {
+  req.session.destroy(function (err) {
+    res.redirect('/'); //Inside a callback… bulletproof!
+  });
+});
+
 app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });

@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { setTopPosition, setParrentComponent, setDisplayWidth } from './store/global/actions';
 import { setOpenClose } from './store/global/menu/actions';
 
-
 import MainPage from './pages/main';
 import ServicePage from './pages/services';
 import BlogPage from './pages/blog';
@@ -13,6 +12,7 @@ import DivorcePage from './pages/divorce';
 import ContactsPage from './pages/contacts';
 import NewsPage from './pages/news';
 import ReturnPage from './pages/return';
+import OpenBlog from './pages/openBlog';
 //global components
 import Buttons from './components/includes/buttons.js';
 import PreloaderContainer from './containers/preloaderContainer';
@@ -59,6 +59,8 @@ class Application extends React.Component{
         <Route path="/contacts" exact component={ContactsPage}/>
         <Route path="/news" exact component={NewsPage}/>
         <Route path="/return" exact component={ReturnPage}/>
+        <Route path="/blog/open*" component={OpenBlog}/>
+
         <Route path="/session/signin" exact component={SignInPage}/>
         <Route path="/panel" exact component={(this.props.isAdmin && this.props.user !== null)?PanelPage:SignInPage}/>
       </Router>

@@ -8,7 +8,9 @@ class SignUpPage extends React.Component {
     super(props);
     this.state = {
       login: '',
-      password: ''
+      password: '',
+      openLoader: false,
+      error: false
     }
     this.submit = this.submit.bind(this);
   }
@@ -16,9 +18,14 @@ class SignUpPage extends React.Component {
     document.getElementById('page').scrollTo(0, 0);
   }
   submit(){
+    this.setState({openLoader: true});
     axios.post(this.props.server+'/session/signin', {data: this.state}).then(res => {
-      console.log(res);
-      this.props.setAdmin(true)
+      console.log(res.data)
+      if(res.data.code === 300){
+        this.setState({openLoader: false, error: true});
+      }else{
+        window.location = "/";
+      }
       return false
     });
   }
@@ -34,6 +41,7 @@ class SignUpPage extends React.Component {
       <MenuContainer transparent={false}/>
       <div className="pageContent">
         <div className="pageSignInContainer">
+            {(this.state.openLoader)?<div className="signInLoader">Перевірка користувача...</div>:null}
             <div className="auth_logo">
               {(this.props.config !== null && this.props.config !== undefined)?<Logotype domId="Logotype" logotype={this.props.server + "/images/" +this.props.config.logo} logoColor={this.props.config.logoColor}/>:null}
             </div>
@@ -43,6 +51,7 @@ class SignUpPage extends React.Component {
             <div className="signInLine">
               <input type="password" name="solister_pass" className="signInInput" value={this.state.password} onChange={this.changePassword.bind(this)}/>
             </div>
+            {(this.state.error)?<div className="error">Невірний логін або пароль!</div>:null}
             <div className="signInLine">
               <input type="button" className="signInButton" value="Вхід" onClick={this.submit}/>
             </div>

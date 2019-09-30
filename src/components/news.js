@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Title from './includes/title';
 import Swiper from 'react-id-swiper';
 import { Link } from 'react-router-dom';
@@ -84,11 +85,49 @@ class NewsComponent extends React.Component {
       modal: false,
       dataId: null,
       contentModal: null,
-      width: document.body.clientWidth
+      width: document.body.clientWidth,
+      openetModal: false
     }
+    this.removeNews = this.removeNews.bind(this);
+    this.openCloseAddModal = this.openCloseAddModal.bind(this);
     this.updateDimensions = this.updateDimensions.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.closeModal = this.closeModal.bind(this)
+  }
+  openCloseAddModal(){
+    this.setState({openetModal: (this.state.openetModal)?false:true })
+  }
+  removeNews(event){
+    const increment = event.target.getAttribute("ai");
+    if(window.confirm('Ви дійсно хочете видалити запис ?')){
+      axios.post(
+        this.props.server+'/news/remove',
+        {AI: increment}
+      ).then(result => {
+        console.log(result.data);
+        this.props.setBlog(result.data.data.blog);
+      });
+    }
+  }
+  addNews(event){
+    axios.post(
+      this.props.server+'/blog/add',
+      this.state
+    ).then(result => {
+      console.log(result.data)
+    });
+  }
+  handleSubmit(event) {
+    event.preventDefault();
+    const data = new FormData()
+    data.append("image", event.target.image.files[0]);
+    data.append("title", event.target.title.value);
+    data.append("tags", event.target.tags.value);
+    data.append("text", event.target.text.value);
+
+    axios.post(this.props.server+'/news/add', data).then(res => { // then print response status
+        console.log(res.data)
+      })
   }
 
   handleClick(el){
@@ -121,6 +160,22 @@ class NewsComponent extends React.Component {
       {(this.state.modal)?<Modal open={this.state.modal} name={this.state.contentModal.title} text={this.state.contentModal.text} closeModal={this.closeModal}/>:null}
       <div className="isPage miniTitle">Останні новини</div>
       <div className="carouselBlock">
+      {(this.props.admin)?<div className="add_blog" onClick={this.openCloseAddModal}>{(this.state.openetModal)?"Закрити":"Додати новину"}</div>:null}
+      {(this.props.admin && this.state.openetModal)
+        ?<div className="addBlocgMOdal">
+          <div className="title_addMOdal">Додати новину</div>
+          <form encType="multipart/form-data" className="body_addMOadal" onSubmit={this.handleSubmit.bind(this)}>
+            <input type="text" name="title" className="add_new_input" placeholder="Введіть заголовок новини"/>
+            <textarea name="text" className="add_new_input textares_blog" placeholder="Введіть текст"></textarea>
+            <input type="file" name="image" id="newBlogIMage"/>
+            <div className="footer_addMOdal">
+              <input type="submit" className="modalFooterButton" value="Сохранить"/>
+              <div className="modalFooterButton" onClick={this.openCloseAddModal}>Отмена</div>
+            </div>
+          </form>
+        </div>
+        :null
+      }
         {(this.state.width > 880)?multipleRowSlidesLayout(this.props.news.news, this.props.server, this.handleClick):multipleRowSlidesLayoutMobile(this.props.news.news,this.props.server, this.handleClick)}
       </div>
       <div className="isPage fullNews">

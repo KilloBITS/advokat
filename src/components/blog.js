@@ -22,6 +22,7 @@ let parseBlog = (data, location, adm, removeBlog) => {
     <div className="blogLine tags">
       {parseTags(comp.tags.split(","))}
     </div>
+    <a href={"/blog/open?blog_ai="+comp.AI} target="_blank"><div className="openBlogDialog">Читати</div></a>
     {(adm)?<div className="remove_blog" ai={comp.AI} onClick={removeBlog}>Видалити</div>:null}
   </div>);
   return dataBlock
@@ -61,7 +62,7 @@ class BlogComponent extends React.Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    const data = new FormData() 
+    const data = new FormData()
     data.append("image", event.target.image.files[0]);
     data.append("title", event.target.title.value);
     data.append("tags", event.target.tags.value);
@@ -72,7 +73,7 @@ class BlogComponent extends React.Component {
       })
   }
   render() {
-    return <div className={(this.props.blog.blog !== undefined && this.props.blog.blog.length > 0)?"block blog":"block blog none"} id="Blog" style={{backgroundColor: this.props.design.blogBackgroundColor}}>
+    return <div className={(this.props.blog.blog !== undefined && this.props.blog.blog.length > 0)?"block blog":"block blog"} id="Blog" style={{backgroundColor: this.props.design.blogBackgroundColor}}>
       <Title data={this.props.blog}/>
       <div className="blogBlockContentData">
         {(this.props.admin)?<div className="add_blog" onClick={this.openCloseAddModal}>{(this.state.openetModal)?"Закрити":"Додати новий запис"}</div>:null}
@@ -92,7 +93,9 @@ class BlogComponent extends React.Component {
           </div>
           :null
         }
-        {(this.props.blog.blog !== undefined && this.props.blog.blog.length > 0)?parseBlog(this.props.blog.blog, this.props.server, this.props.admin, this.removeBlog): null}
+        {(this.props.blog.blog !== undefined && this.props.blog.blog.length > 0)
+          ?parseBlog(this.props.blog.blog, this.props.server, this.props.admin, this.removeBlog)
+          :<div className="notDataFound">Данні відсутні</div>}
       </div>
     </div>
   }

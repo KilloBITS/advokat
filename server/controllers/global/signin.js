@@ -19,7 +19,7 @@ const signinData = (req, res) => {
           req.session.user = results_user[0].login;
           res.send({code: 200, data: true});
         }else{
-          res.send({code: 300})
+          res.send({code: 300});
         }
       }else{
         res.send({code: 300})

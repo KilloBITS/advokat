@@ -332,6 +332,8 @@ a{
 .thisTitle{
   position: relative;
   z-index: 1;
+  cursor: default;
+  pointer-events: none;
 }
 
 .thisSubTitle{
@@ -345,6 +347,8 @@ a{
   opacity: 0.3;
   z-index: 0;
   font-family: BickhamScriptOne;
+  cursor: default;
+  pointer-events: none;
 }
 
 .title_line{
@@ -688,6 +692,13 @@ a{
   height: 230px;
   position: relative;
   border-bottom: 1px solid #a3a3a3;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.blogBlockContent:hover{
+  border: 1px solid #ebebeb;
+  background-color: #fbfbfb;
 }
 
 .blogBlockContent.open{
@@ -722,6 +733,7 @@ a{
   width: 298px;
   overflow: hidden;
   float: left;
+  max-height: calc(100% - 44px);
 }
 
 .blogLine.image img{
@@ -1727,13 +1739,15 @@ a{
 }
 
 .addBlocgMOdal{
-  position: absolute;
-  left: 0;
-  background-color: #ffffff;
-  width: 100%;
-  height: calc(100% - 210px);
+  position: fixed;
+  background-color: #fff;
   z-index: 100;
-  bottom: 0;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  padding: 25px;
+  border: 1px solid silver;
+  border-radius: 5px;
 }
 
 .title_addMOdal{
@@ -1769,9 +1783,68 @@ a{
 
 .modalFooterButton{
   display: inline-block;
-  padding: 10px 30px;
+  padding: 5px 30px;
   background-color: #73e87b;
-  margin: 10px 10px;
+  margin: 10px;
   border-radius: 150px;
   cursor: pointer;
+  border: none;
+  font-family: sans-serif;
+  text-transform: uppercase;
+}
+
+.carouselBlock{
+  max-width: 1024px;
+  margin: auto;
+}
+
+.notDataFound{
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  background-color: #fdcfcf;
+  border-radius: 5px;
+  margin: 15px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.signInLoader{
+  position: absolute;
+  width: calc(100% + 10px);
+  height: 100%;
+  background-color: white;
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+
+.error{
+  text-align: center;
+  color: red;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.openBlogDialog{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 100%;
+  background-color: rgba(167, 167, 167, 0.6);
+  text-align: center;
+  vertical-align: middle;
+  line-height: 240px;
+  text-transform: uppercase;
+  color: black;
+  letter-spacing: 1px;
+  font-size: 24px;
+  opacity: 0;
+  transition: .3s;
+}
+
+.blogBlockContent:hover .openBlogDialog{
+  opacity: 1;
 }
