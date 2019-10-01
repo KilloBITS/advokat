@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NewsBlock from '../components/news'
+import { setNews } from '../store/news/actions';
 
 class NewsContainer extends React.Component {
   render() {
@@ -10,6 +11,7 @@ class NewsContainer extends React.Component {
       design={this.props.design}
       news={this.props.newsData}
       admin={this.props.admin}
+      setNews={this.props.setNews}
       />
     :null
   }
@@ -25,4 +27,8 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps)(NewsContainer);
+const mapDispatchProps = {
+  setNews
+}
+
+export default connect(mapStateToProps, mapDispatchProps)(NewsContainer);

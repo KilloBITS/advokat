@@ -49,6 +49,10 @@ const blog =  require('./controllers/panel/blogPanel');
 app.post('/blog/remove', blog);
 app.post('/blog/add', blog);
 
+const news =  require('./controllers/panel/newsPanel');
+app.post('/news/remove', news);
+app.post('/news/add', news);
+
 app.get('/signout', function (req, res) {
   req.session.destroy(function (err) {
     res.redirect('/'); //Inside a callback… bulletproof!
@@ -62,4 +66,5 @@ app.get('/*', function (req, res) {
 app.listen(80, function(){
   console.warn('Server started from port 80');
   global.blogImageFolder = './data/images/blog/';
+  global.newsImageFolder = './data/images/news/';  
 });

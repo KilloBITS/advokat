@@ -13,15 +13,14 @@ const remove = (req, res, next) => {
   mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
     const db = client.db("LAWYER");
     const news_table = db.collection("news");
-
     if (err) return console.log(err);
-    console.log(req.body.AI)
+
     news_table.find({AI: 0}).toArray(function(err, results_news) {
-      var newNews = results_news[0].blog;
+      var newNews = results_news[0].news;
       console.log(newNews)
-      newBlog.splice(newNews.findIndex(x => x.AI === parseInt(req.body.AI) ), 1);
+      newNews.splice(newNews.findIndex(x => x.AI === parseInt(req.body.AI) ), 1);
       news_table.updateOne({AI: 0},{ $set: { news: newNews }});
-  		res.send({code:500, blog: newNews});
+  		res.send({code:500, news: newNews});
   	});
   });
 };
@@ -33,19 +32,21 @@ const add = (req, res, next) => {
     const db = client.db("LAWYER");
     const news_table = db.collection("news");
     if (err) return console.log(err);
+
     news_table.find({AI: 0}).toArray(function(err, results_news) {
       var oldNews = (results_news[0].news.length <= 0)?[]:results_news[0].news;
       var fileNameSuka = '';
       var form = new formidable.IncomingForm();
       form.parse(req);
       form.on('fileBegin', function (name, file){
-          file.path = global.blogImageFolder + file.name;
+          file.path = global.newsImageFolder + file.name;
           new formidable.IncomingForm().parse(req, (err, fields, files) => {
+            console.log(fields)
             var newNews = {
               title: fields.title,
               text: fields.text,
               image: file.name,
-              AI: oldBlog.length+1,
+              AI: oldNews.length+1,
             };
             oldNews.push(newNews)
             news_table.updateOne({AI: 0},{ $set: { news: oldNews }});

@@ -7,8 +7,9 @@ import Modal from './includes/modal.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../styles/swiper.css';
 
-let parseNews = (data, location, click) => {
+let parseNews = (data, location, click, adm, removeNews) => {
   const dataBlock = data.map((comp, key) => <div key={key} className="newsBlockContent">
+    {(!adm)?<div className="remove_news" ai={comp.AI} onClick={removeNews}>Видалити</div>:null}
     <div className="newsLine image">
       <img src={location + '/images/news/' + comp.image} alt=""/>
     </div>
@@ -16,12 +17,13 @@ let parseNews = (data, location, click) => {
     <div className="newsLine text">{comp.text}</div>
     <div className="newsLine buttons">
       <div id={comp.AI} onClick={click.bind(this)}>Детальніше</div>
+
     </div>
   </div>);
   return dataBlock
 }
 
-const multipleRowSlidesLayout = (stafData, location, click) => {
+const multipleRowSlidesLayout = (stafData, location, click, adm, removeNews) => {
   const params = {
     slidesPerView: 3,
     spaceBetween: 30,
@@ -40,12 +42,12 @@ const multipleRowSlidesLayout = (stafData, location, click) => {
   }
   return (
     <Swiper {...params}>
-      {parseNews(stafData, location, click)}
+      {parseNews(stafData, location, click, adm, removeNews)}
     </Swiper>
   )
 };
 
-const multipleRowSlidesLayoutMobile = (data, location, click) => {
+const multipleRowSlidesLayoutMobile = (data, location, click, adm, removeNews) => {
   const params = {
     effect: 'coverflow',
     grabCursor: true,
@@ -73,7 +75,7 @@ const multipleRowSlidesLayoutMobile = (data, location, click) => {
   }
   return (
     <Swiper {...params}>
-        {parseNews(data, location, click)}
+        {parseNews(data, location, click, adm, removeNews)}
     </Swiper>
   )
 };
@@ -86,7 +88,9 @@ class NewsComponent extends React.Component {
       dataId: null,
       contentModal: null,
       width: document.body.clientWidth,
-      openetModal: false
+      openetModal: false,
+      isLoaderModal: false,
+      loaderStatusL: 0
     }
     this.removeNews = this.removeNews.bind(this);
     this.openCloseAddModal = this.openCloseAddModal.bind(this);
@@ -104,30 +108,24 @@ class NewsComponent extends React.Component {
         this.props.server+'/news/remove',
         {AI: increment}
       ).then(result => {
-        console.log(result.data);
-        this.props.setBlog(result.data.data.blog);
+        this.props.setNews(result.data.data.news);
       });
     }
   }
-  addNews(event){
-    axios.post(
-      this.props.server+'/blog/add',
-      this.state
-    ).then(result => {
-      console.log(result.data)
-    });
-  }
+
   handleSubmit(event) {
     event.preventDefault();
-    const data = new FormData()
+    this.setState({isLoaderModal: true})
+    let data = new FormData()
     data.append("image", event.target.image.files[0]);
     data.append("title", event.target.title.value);
-    data.append("tags", event.target.tags.value);
     data.append("text", event.target.text.value);
 
     axios.post(this.props.server+'/news/add', data).then(res => { // then print response status
-        console.log(res.data)
+      this.setState({openetModal: (this.state.openetModal)?false:true }, () => {
+        this.setState({isLoaderModal: false});
       })
+    })
   }
 
   handleClick(el){
@@ -160,9 +158,10 @@ class NewsComponent extends React.Component {
       {(this.state.modal)?<Modal open={this.state.modal} name={this.state.contentModal.title} text={this.state.contentModal.text} closeModal={this.closeModal}/>:null}
       <div className="isPage miniTitle">Останні новини</div>
       <div className="carouselBlock">
-      {(this.props.admin)?<div className="add_blog" onClick={this.openCloseAddModal}>{(this.state.openetModal)?"Закрити":"Додати новину"}</div>:null}
-      {(this.props.admin && this.state.openetModal)
+      {(!this.props.admin)?<div className="add_blog" onClick={this.openCloseAddModal}>{(this.state.openetModal)?"Закрити":"Додати новину"}</div>:null}
+      {(!this.props.admin && this.state.openetModal)
         ?<div className="addBlocgMOdal">
+          <div className={(this.state.isLoaderModal)?"modalLoader show":"modalLoader"}></div>
           <div className="title_addMOdal">Додати новину</div>
           <form encType="multipart/form-data" className="body_addMOadal" onSubmit={this.handleSubmit.bind(this)}>
             <input type="text" name="title" className="add_new_input" placeholder="Введіть заголовок новини"/>
@@ -176,7 +175,7 @@ class NewsComponent extends React.Component {
         </div>
         :null
       }
-        {(this.state.width > 880)?multipleRowSlidesLayout(this.props.news.news, this.props.server, this.handleClick):multipleRowSlidesLayoutMobile(this.props.news.news,this.props.server, this.handleClick)}
+        {(this.state.width > 880)?multipleRowSlidesLayout(this.props.news.news, this.props.server, this.handleClick, this.props.admin, this.removeNews):multipleRowSlidesLayoutMobile(this.props.news.news,this.props.server, this.handleClick, this.props.admin, this.removeNews)}
       </div>
       <div className="isPage fullNews">
         <div className="miniTitle">Всі новини</div>

@@ -32,7 +32,9 @@ class BlogComponent extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      openetModal: false
+      openetModal: false,
+      isLoaderModal: false,
+      loaderStatusL: 0
     }
     this.removeBlog = this.removeBlog.bind(this);
     this.openCloseAddModal = this.openCloseAddModal.bind(this);
@@ -52,25 +54,19 @@ class BlogComponent extends React.Component {
       });
     }
   }
-  addBlog(event){
-    axios.post(
-      this.props.server+'/blog/add',
-      this.state
-    ).then(result => {
-      console.log(result.data)
-    });
-  }
   handleSubmit(event) {
     event.preventDefault();
+    this.setState({isLoaderModal: true})
     const data = new FormData()
     data.append("image", event.target.image.files[0]);
     data.append("title", event.target.title.value);
     data.append("tags", event.target.tags.value);
     data.append("text", event.target.text.value);
-
-    axios.post(this.props.server+'/blog/add', data).then(res => { // then print response status
-        console.log(res.data)
+    axios.post(this.props.server+'/blog/add', data).then(res => {
+      this.setState({openetModal: (this.state.openetModal)?false:true }, () => {
+        this.setState({isLoaderModal: false});
       })
+    })
   }
   render() {
     return <div className={(this.props.blog.blog !== undefined && this.props.blog.blog.length > 0)?"block blog":"block blog"} id="Blog" style={{backgroundColor: this.props.design.blogBackgroundColor}}>
@@ -79,6 +75,7 @@ class BlogComponent extends React.Component {
         {(this.props.admin)?<div className="add_blog" onClick={this.openCloseAddModal}>{(this.state.openetModal)?"Закрити":"Додати новий запис"}</div>:null}
         {(this.props.admin && this.state.openetModal)
           ?<div className="addBlocgMOdal">
+            <div className={(this.state.isLoaderModal)?"modalLoader show":"modalLoader"}></div>
             <div className="title_addMOdal">Додати запис у блог</div>
             <form encType="multipart/form-data" className="body_addMOadal" onSubmit={this.handleSubmit.bind(this)}>
               <input type="text" name="title" className="add_new_input" placeholder="Введіть заголовок"/>
