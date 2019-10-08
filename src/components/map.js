@@ -13,9 +13,9 @@ var meIcon = L.divIcon({
     popupAnchor : [0, -30],
   });
 
-const position = [49.836820,24.010683]
+const position = [49.811997, 24.061480]
 const map = (
-  <Map center={[49.836820,24.009683]}  scrollWheelZoom={false} zoom={18} id="map">
+  <Map center={[49.811997, 24.061480]}  scrollWheelZoom={false} zoom={18} id="map">
     <TileLayer url="https://stamen-tiles-c.a.ssl.fastly.net/toner/{z}/{x}/{y}.png"/>
     <Marker position={position} icon={meIcon} ></Marker>
   </Map>
@@ -28,7 +28,7 @@ class MapComponent extends React.Component {
         <div className="mapDataBlock">
           {map}
         </div>
-  
+
     </div>
   }
 }

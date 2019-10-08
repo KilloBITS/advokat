@@ -67,11 +67,11 @@ class ContactsComponent extends React.Component {
             </div>
             <div className="contactsLine">
               <div className="contactsLineTitle">Ми в соц. мережах</div>
-              {(this.props.socials.instagram !== "#")?<a className="socialContact" href={this.props.socials.instagram}><FontAwesomeIcon icon={['fab', 'instagram']}/></a>:null}
-              {(this.props.socials.facebook !== "#")?<a className="socialContact" href={this.props.socials.facebook}><FontAwesomeIcon icon={['fab', 'facebook-square']}/></a>:null}
-              {(this.props.socials.linkedin !== "#")?<a className="socialContact" href={this.props.socials.linkedin}><FontAwesomeIcon icon={['fab', 'linkedin']}/></a>:null}
-              {(this.props.socials.vkontacte !== "#")?<a className="socialContact" href={this.props.socials.vkontacte}><FontAwesomeIcon icon={['fab', 'vk']}/></a>:null}
-              {(this.props.socials.reddit !== "#")?<a className="socialContact" href={this.props.socials.reddit}><FontAwesomeIcon icon={['fab', 'reddit-square']}/></a>:null}
+              {(this.props.socials.instagram !== "#" || this.props.socials.instagram !== "")?<a className="socialContact" href={this.props.socials.instagram}><FontAwesomeIcon icon={['fab', 'instagram']}/></a>:null}
+              {(this.props.socials.facebook !== "#" || this.props.socials.facebook !== "")?<a className="socialContact" href={this.props.socials.facebook}><FontAwesomeIcon icon={['fab', 'facebook-square']}/></a>:null}
+              {(this.props.socials.linkedin !== "#" || this.props.socials.linkedin !== "")?<a className="socialContact" href={this.props.socials.linkedin}><FontAwesomeIcon icon={['fab', 'linkedin']}/></a>:null}
+              {(this.props.socials.vkontacte !== "#" || this.props.socials.vkontacte !== "")?<a className="socialContact" href={this.props.socials.vkontacte}><FontAwesomeIcon icon={['fab', 'vk']}/></a>:null}
+              {(this.props.socials.reddit !== "#" || this.props.socials.reddit !== "")?<a className="socialContact" href={this.props.socials.reddit}><FontAwesomeIcon icon={['fab', 'reddit-square']}/></a>:null}
             </div>
 
           </div>
