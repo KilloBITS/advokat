@@ -122,7 +122,7 @@ class NewsComponent extends React.Component {
     data.append("text", event.target.text.value);
 
     axios.post(this.props.server+'/news/add', data).then(res => { // then print response status
-      this.props.setNews(res.data.data.news);
+      this.props.setNews(res.data.news);
       this.setState({openetModal: (this.state.openetModal)?false:true }, () => {
         this.setState({isLoaderModal: false});
       })
