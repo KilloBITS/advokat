@@ -9,7 +9,7 @@ import '../styles/swiper.css';
 
 let parseNews = (data, location, click, adm, removeNews) => {
   const dataBlock = data.map((comp, key) => <div key={key} className="newsBlockContent">
-    {(adm)?<div className="remove_news" ai={comp.AI} onClick={removeNews}>Видалити</div>:null}
+    {(!adm)?<div className="remove_news" ai={comp.AI} onClick={removeNews}>Видалити</div>:null}
     <div className="newsLine image">
       <img src={location + '/images/news/' + comp.image} alt=""/>
     </div>
@@ -104,11 +104,12 @@ class NewsComponent extends React.Component {
   removeNews(event){
     const increment = event.target.getAttribute("ai");
     if(window.confirm('Ви дійсно хочете видалити запис ?')){
+      this.setState({modal: true})
       axios.post(
         this.props.server+'/news/remove',
         {AI: increment}
       ).then(result => {
-        this.props.setNews(result.data.data.news);
+        // this.props.setNews(result.data.news);
       });
     }
   }
@@ -120,9 +121,8 @@ class NewsComponent extends React.Component {
     data.append("image", event.target.image.files[0]);
     data.append("title", event.target.title.value);
     data.append("text", event.target.text.value);
-
     axios.post(this.props.server+'/news/add', data).then(res => { // then print response status
-      this.props.setNews(res.data.news);
+      // this.props.setNews(res.data.news);
       this.setState({openetModal: (this.state.openetModal)?false:true }, () => {
         this.setState({isLoaderModal: false});
       })
@@ -159,8 +159,8 @@ class NewsComponent extends React.Component {
       {(this.state.modal)?<Modal open={this.state.modal} name={this.state.contentModal.title} text={this.state.contentModal.text} closeModal={this.closeModal}/>:null}
       <div className="isPage miniTitle">Останні новини</div>
       <div className="carouselBlock">
-      {(this.props.admin)?<div className="add_blog" onClick={this.openCloseAddModal}>{(this.state.openetModal)?"Закрити":"Додати новину"}</div>:null}
-      {(this.props.admin && this.state.openetModal)
+      {(!this.props.admin)?<div className="add_blog" onClick={this.openCloseAddModal}>{(this.state.openetModal)?"Закрити":"Додати новину"}</div>:null}
+      {(!this.props.admin && this.state.openetModal)
         ?<div className="addBlocgMOdal">
           <div className={(this.state.isLoaderModal)?"modalLoader show":"modalLoader"}></div>
           <div className="title_addMOdal">Додати новину</div>
@@ -183,7 +183,7 @@ class NewsComponent extends React.Component {
       </div>
       <div className="isPage fullNews">
         <div className="miniTitle">Всі новини</div>
-        {parseNews(this.props.news.news, this.props.server, this.handleClick)}
+        {(this.props.news.news.length > 0)?parseNews(this.props.news.news, this.props.server, this.handleClick):<div className="notDataFound">Данні відсутні</div>}
       </div>
       <div className="isPage openFullNewsBTN">Показати більше</div>
     </div>

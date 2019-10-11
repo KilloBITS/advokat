@@ -20,6 +20,7 @@ const remove = (req, res, next) => {
       console.log(newNews)
       newNews.splice(newNews.findIndex(x => x.AI === parseInt(req.body.AI) ), 1);
       news_table.updateOne({AI: 0},{ $set: { news: newNews }});
+      
   		res.send({code:500, news: newNews});
   	});
   });
