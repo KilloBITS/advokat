@@ -158,8 +158,8 @@ class NewsComponent extends React.Component {
       {(this.state.modal)?<Modal open={this.state.modal} name={this.state.contentModal.title} text={this.state.contentModal.text} closeModal={this.closeModal}/>:null}
       <div className="isPage miniTitle">Останні новини</div>
       <div className="carouselBlock">
-      {(this.props.admin)?<div className="add_blog" onClick={this.openCloseAddModal}>{(this.state.openetModal)?"Закрити":"Додати новину"}</div>:null}
-      {(this.props.admin && this.state.openetModal)
+      {(!this.props.admin)?<div className="add_blog" onClick={this.openCloseAddModal}>{(this.state.openetModal)?"Закрити":"Додати новину"}</div>:null}
+      {(!this.props.admin && this.state.openetModal)
         ?<div className="addBlocgMOdal">
           <div className={(this.state.isLoaderModal)?"modalLoader show":"modalLoader"}></div>
           <div className="title_addMOdal">Додати новину</div>

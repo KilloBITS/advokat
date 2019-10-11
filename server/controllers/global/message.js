@@ -20,7 +20,6 @@ let postMessage = (req, res, next) => {
 	today = mm + '/' + dd + '/' + yyyy;
 
   let data = req.body.text;
-  console.log(data)
   let message = '• '+data.name + ' ' + data.surname +' • \n \n' +
                 +data.number+' \n'+
                 +data.email+
