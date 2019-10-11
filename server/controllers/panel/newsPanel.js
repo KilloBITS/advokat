@@ -50,7 +50,7 @@ const add = (req, res, next) => {
             };
             oldNews.push(newNews)
             news_table.updateOne({AI: 0},{ $set: { news: oldNews }});
-            res.send({code:500, blog: oldNews});
+            res.send({code:500, news: oldNews});
           })
       });
       form.on('file', function (name, file){

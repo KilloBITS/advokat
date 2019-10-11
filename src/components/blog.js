@@ -63,6 +63,7 @@ class BlogComponent extends React.Component {
     data.append("tags", event.target.tags.value);
     data.append("text", event.target.text.value);
     axios.post(this.props.server+'/blog/add', data).then(res => {
+      this.props.setBlog(res.data.data.blog);
       this.setState({openetModal: (this.state.openetModal)?false:true }, () => {
         this.setState({isLoaderModal: false});
       })
