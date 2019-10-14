@@ -45,7 +45,7 @@ let divorce = (req, res, next) => {
     };
 
     alerts.insertOne(AlertsData);
-		
+
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -66,7 +66,7 @@ let divorce = (req, res, next) => {
     let message = "<div>"+div_kids+div_kidsNo18+div_proti+div_name+div_country+div_number+"<div>";
     let mailOptions = {
         from: "cristall.bot.site@gmail.com", // sender address
-        to: "advokat.sokal@gmail.com", // list of receivers advokat.sokal@gmail.com
+        to: "mr.kalinuk@gmail.com",//"advokat.sokal@gmail.com", // list of receivers advokat.sokal@gmail.com
         subject: "Сообщение с сайта Solister (Розлучення онлайн) | "+today  , // Subject line
         html: message, // plain text body
     };
