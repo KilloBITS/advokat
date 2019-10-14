@@ -12,6 +12,9 @@ router.use(cookieParser());
 
 const transporter = nodemailer.createTransport({
 	service: 'gmail',
+	host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
 	auth: {
 		user: 'cristall.bot.site@gmail.com',
 		pass: 'cristallbot0907'
@@ -42,9 +45,7 @@ let divorce = (req, res, next) => {
     };
 
     alerts.insertOne(AlertsData);
-
-    console.log(req.body)
-
+		
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
