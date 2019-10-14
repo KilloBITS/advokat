@@ -1,15 +1,17 @@
 'use strict';
 const express = require('express');
 const nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 const router = express.Router();
 
-const transporter = nodemailer.createTransport({
-	service: 'gmail',
-	auth: {
+var transporter = nodemailer.createTransport(smtpTransport({
+  service: 'gmail',
+  host: 'smtp.gmail.com',
+  auth: {
 		user: 'solister.lviv@gmail.com',
 		pass: 'qazwsx159357'
-	}
-});
+  }
+}));
 
 let postMessage = (req, res, next) => {
 	var today = new Date();
@@ -25,7 +27,7 @@ let postMessage = (req, res, next) => {
                 +data.email+
                 +data.massage
   const mailOptions = {
-      from: "cristall.bot.site@gmail.com", // sender address
+      from: "solister.lviv@gmail.com", // sender address
       to: "mr.kalinuk@gmail.com",//to: "advokat.sokal@gmail.com", // list of receivers
       subject: "Сообщение с сайта Solister ("+ data.email +")", // Subject line
       text: message, // plain text body
