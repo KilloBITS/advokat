@@ -24,9 +24,9 @@ let postMessage = (req, res, next) => {
                 +data.number+' \n'+
                 +data.email+
                 +data.massage
-  let mailOptions = {
+  const mailOptions = {
       from: "cristall.bot.site@gmail.com", // sender address
-      to: "advokat.sokal@gmail.com", // list of receivers
+      to: "mr.kalinuk@gmail.com",//to: "advokat.sokal@gmail.com", // list of receivers
       subject: "Сообщение с сайта Solister ("+ data.email +")", // Subject line
       text: message, // plain text body
   };
