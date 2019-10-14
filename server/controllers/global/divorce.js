@@ -5,18 +5,19 @@ const mongoClient = require("mongodb").MongoClient;
 const bParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 const fs = require("fs");
 
 router.use(cookieParser());
 
-
-const transporter = nodemailer.createTransport({
-	service: 'gmail',
-	auth: {
+var transporter = nodemailer.createTransport(smtpTransport({
+  service: 'gmail',
+  host: 'smtp.gmail.com',
+  auth: {
 		user: 'solister.lviv@gmail.com',
 		pass: 'qazwsx159357'
-	}
-});
+  }
+}));
 
 let divorce = (req, res, next) => {
   mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
