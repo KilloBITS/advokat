@@ -334,6 +334,7 @@ a{
   z-index: 1;
   cursor: default;
   pointer-events: none;
+  font-size: 40px;
 }
 
 .thisSubTitle{
