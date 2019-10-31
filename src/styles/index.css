@@ -646,6 +646,7 @@ a{
   bottom: 10px;
   left: 0;
   position: absolute;
+  background-color: white;
 }
 
 .newsLine.buttons div{
