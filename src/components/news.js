@@ -133,7 +133,7 @@ class NewsComponent extends React.Component {
     this.setState({
       modal: true,
       dataId: el.target.id,
-      contentModal: this.props.news.news[parseInt(el.target.id)]
+      contentModal: this.props.news.news.find(x => x.AI === parseInt(el.target.id) )
     });
   }
 
@@ -156,7 +156,10 @@ class NewsComponent extends React.Component {
   render() {
     return <div className="block news" id="News" style={{backgroundColor: this.props.design.newsBackgroundColor}}>
       <Title data={this.props.news}/>
-      {(this.state.modal)?<Modal open={this.state.modal} name={this.state.contentModal.title} text={this.state.contentModal.text} closeModal={this.closeModal}/>:null}
+      {(this.state.modal)
+        ?<Modal open={this.state.modal} name={this.state.contentModal.title} text={this.state.contentModal.text} closeModal={this.closeModal}/>
+        :null
+      }
       <div className="isPage miniTitle">Останні новини</div>
       <div className="carouselBlock">
       {(this.props.admin)?<div className="add_blog" onClick={this.openCloseAddModal}>{(this.state.openetModal)?"Закрити":"Додати новину"}</div>:null}

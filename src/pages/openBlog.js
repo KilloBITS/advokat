@@ -5,7 +5,6 @@ import MenuContainer from '../containers/menuContainer';
 class OpenBlogPage extends React.Component {
   componentDidMount(){
     document.getElementById('page').scrollTo(0, 0);
-
   }
   render() {
     return <div className="page blog">

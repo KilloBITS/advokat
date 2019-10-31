@@ -10,7 +10,6 @@ let parseTags = (tags) => {
   return dataBlock
 }
 
-// <a href={"/blog/open?blog_ai="+comp.AI} target="_blank"><div className="openBlogDialog">Читати</div></a>
 let parseBlog = (data, location, adm, removeBlog) => {
   const dataBlock = data.map((comp, key) => <div key={key} id={"blog_"+key} className="blogBlockContent">
     <div className="blogLine image">
