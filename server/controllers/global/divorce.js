@@ -63,7 +63,7 @@ let divorce = (req, res, next) => {
     const mailOptions = {
         from: "solister.lviv@gmail.com", // sender address
         to: "advokat.sokal@gmail.com", // list of receivers advokat.sokal@gmail.com
-        subject: "Сообщение с сайта Solister (Розлучення онлайн) | "+today  , // Subject line
+        subject: "Сообщение с сайта LERION (Розлучення онлайн) | "+today  , // Subject line
         html: message, // plain text body
     };
 

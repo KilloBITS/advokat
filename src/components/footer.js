@@ -27,8 +27,8 @@ class FooterComponent extends React.Component {
           <div className="menu_btn">Працівникам</div>
         </div>
         <div className="footerContent center">
-          <div className="footer_logotype">
-            <Logotype domId="footerLogo" logotype={this.props.server + "/images/" +this.props.config.logo} logoColor={this.props.config.logoColor}/>
+          <div className="footer_logotype" style={{maxWidth: 400}}>
+            <Logotype domId="footerLogo" logotype={this.props.server + "/images/logotype.png"} logoColor={this.props.config.logoColor}/>
           </div>
         </div>
         <div className="footerContent right">

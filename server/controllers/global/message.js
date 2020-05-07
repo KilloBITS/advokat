@@ -1,4 +1,3 @@
-'use strict';
 const express = require('express');
 const nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
@@ -29,7 +28,7 @@ let postMessage = (req, res, next) => {
   const mailOptions = {
       from: "solister.lviv@gmail.com", // sender address
       to: "mr.kalinuk@gmail.com",//to: "advokat.sokal@gmail.com", // list of receivers
-      subject: "Сообщение с сайта Solister ("+ data.email +")", // Subject line
+      subject: "Сообщение с сайта LERION ("+ data.email +")", // Subject line
       text: message, // plain text body
   };
 

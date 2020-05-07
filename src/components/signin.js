@@ -43,7 +43,7 @@ class SignUpPage extends React.Component {
         <div className="pageSignInContainer">
             {(this.state.openLoader)?<div className="signInLoader">Перевірка користувача...</div>:null}
             <div className="auth_logo">
-              {(this.props.config !== null && this.props.config !== undefined)?<Logotype domId="Logotype" logotype={this.props.server + "/images/" +this.props.config.logo} logoColor={this.props.config.logoColor}/>:null}
+              {(this.props.config !== null && this.props.config !== undefined)?<Logotype domId="Logotype" logotype={this.props.server + "/images/logotype.png"} logoColor={this.props.config.logoColor}/>:null}
             </div>
             <div className="signInLine">
               <input type="text" name="solister_login" className="signInInput" value={this.state.login} onChange={this.changeLogin.bind(this)}/>
