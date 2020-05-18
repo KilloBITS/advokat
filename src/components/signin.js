@@ -46,10 +46,10 @@ class SignUpPage extends React.Component {
               {(this.props.config !== null && this.props.config !== undefined)?<Logotype domId="Logotype" logotype={this.props.server + "/images/logotype.png"} logoColor={this.props.config.logoColor}/>:null}
             </div>
             <div className="signInLine">
-              <input type="text" name="solister_login" className="signInInput" value={this.state.login} onChange={this.changeLogin.bind(this)}/>
+              <input type="text" name="solister_login" placeholder="Введите ваш логин" className="signInInput" value={this.state.login} onChange={this.changeLogin.bind(this)}/>
             </div>
             <div className="signInLine">
-              <input type="password" name="solister_pass" className="signInInput" value={this.state.password} onChange={this.changePassword.bind(this)}/>
+              <input type="password" name="solister_pass" placeholder="Введите ваш пароль" className="signInInput" value={this.state.password} onChange={this.changePassword.bind(this)}/>
             </div>
             {(this.state.error)?<div className="error">Невірний логін або пароль!</div>:null}
             <div className="signInLine">

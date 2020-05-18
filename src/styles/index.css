@@ -1678,6 +1678,10 @@ a{
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  background-color: #262626;
+  padding: 50px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 6px 1px rgba(0, 0, 0, 0.47);
 }
 
 .signInLine{
@@ -1706,6 +1710,15 @@ a{
   color: white;
   background-color: #262626;
   cursor: pointer;
+  border: 2px solid white;
+  height: 36px;
+  border-radius: 100px;
+  transition: .3s;
+}
+
+.signInButton:hover{
+  background-color: white;
+  color: #262626;
 }
 
 .auth_logo{
@@ -1885,4 +1898,9 @@ a{
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+
+.Logotype img{
+  width: 100%;
 }
