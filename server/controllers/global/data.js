@@ -50,7 +50,7 @@ let getdata = (req, res, next) => {
                                   head: results_head[0],
                                   about: results_about[0],
                                   statistic: results_statistic[0],
-                                  news: results_news[0],
+                                  news: results_news ? results_news[0] : [],
                                   services: results_services[0],
                                   blog: results_blog[0],
                                   contacts: results_contacts[0],

@@ -21,18 +21,19 @@ let postMessage = (req, res, next) => {
 	today = mm + '/' + dd + '/' + yyyy;
 
   let data = req.body.text;
+  console.log(data)
   let message = '• '+data.name + ' ' + data.surname +' • \n \n' +
                 +data.number+' \n'+
                 +data.email+
                 +data.massage
-  const mailOptions = {
-      from: "solister.lviv@gmail.com", // sender address
-      to: "mr.kalinuk@gmail.com",//to: "advokat.sokal@gmail.com", // list of receivers
-      subject: "Сообщение с сайта LERION ("+ data.email +")", // Subject line
-      text: message, // plain text body
-  };
+  // const mailOptions = {
+  //     from: "solister.lviv@gmail.com", // sender address
+  //     to: "mr.kalinuk@gmail.com",//to: "advokat.sokal@gmail.com", // list of receivers
+  //     subject: "Сообщение с сайта LERION ("+ data.email +")", // Subject line
+  //     text: message, // plain text body
+  // };
 
-  transporter.sendMail(mailOptions);
+  // transporter.sendMail(mailOptions);
   res.send({code: 500, txt:'12345'});
 };
 
